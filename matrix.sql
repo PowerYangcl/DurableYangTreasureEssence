@@ -32,7 +32,7 @@ CREATE TABLE `ac_api_domain` (
   `update_user_name` varchar(20) DEFAULT '' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=815 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=819 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `ac_api_domain` */
 
@@ -40,7 +40,11 @@ insert  into `ac_api_domain`(`id`,`ac_api_info_id`,`ac_include_domain_id`,`creat
 (811,80161083,27,'2021-03-15 16:18:13',2,'Yangcl','2021-03-15 16:18:13',2,'Yangcl',1),
 (812,80161083,29,'2021-03-15 16:18:13',2,'Yangcl','2021-03-15 16:18:13',2,'Yangcl',1),
 (813,80161083,30,'2021-03-15 16:18:13',2,'Yangcl','2021-03-15 16:18:13',2,'Yangcl',1),
-(814,80161083,32,'2021-03-15 16:18:13',2,'Yangcl','2021-03-15 16:18:13',2,'Yangcl',1);
+(814,80161083,32,'2021-03-15 16:18:13',2,'Yangcl','2021-03-15 16:18:13',2,'Yangcl',1),
+(815,80161090,27,'2021-07-16 18:37:40',2,'Yangcl','2021-07-16 18:37:40',2,'Yangcl',1),
+(816,80161090,30,'2021-07-16 18:37:40',2,'Yangcl','2021-07-16 18:37:40',2,'Yangcl',1),
+(817,80161090,32,'2021-07-16 18:37:40',2,'Yangcl','2021-07-16 18:37:40',2,'Yangcl',1),
+(818,80161090,35,'2021-07-16 18:37:40',2,'Yangcl','2021-07-16 18:37:40',2,'Yangcl',1);
 
 /*Table structure for table `ac_api_info` */
 
@@ -68,60 +72,52 @@ CREATE TABLE `ac_api_info` (
   `update_user_name` varchar(20) DEFAULT '' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=80161090 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='alter table `ac_api_info` AUTO_INCREMENT=80160001';
+) ENGINE=InnoDB AUTO_INCREMENT=80161091 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='alter table `ac_api_info` AUTO_INCREMENT=80160001';
 
 /*Data for the table `ac_api_info` */
 
 insert  into `ac_api_info`(`id`,`name`,`target`,`dto_info`,`atype`,`module`,`processor`,`domain`,`parent_id`,`seqnum`,`discard`,`login`,`remark`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
-(80160101,'根据API的target返回DTO的Json文本','API-COMMON-FIND-DTO',NULL,'private','matrix-api','common.ApiFindDtoProcessor',0,8,6,1,1,'根据API缓存的target返回查询消息体','2018-10-09 11:07:55',1992,'Yangcl','2018-11-16 11:31:33',1992,'Yangcl',1),
-(80160102,'根据Api请求者的key，找到对应的value','API-COMMON-FIND-VALUE-BY-KEY','{}','private','matrix-api','common.ApiFindValueByKey',0,8,7,0,1,'根据请求者的key，找到对应的value','2018-10-09 11:10:39',1992,'Yangcl','2020-01-10 18:02:00',2,'Yangcl',1),
-(80160155,'用户登录接口','MANAGER-API-100','{\"userName\":\"admin-mdl\",\"password\":\"123456\",\r\n\"platform\":\"134160222D87\"}','private','matrix-manager-api','privates.ManagerApi100Processor',0,9,3,1,0,'验证用户登录信息|客户端用户：nodejs/IOS平板等','2018-10-11 15:49:38',1992,'Yangcl','2021-03-15 15:26:50',2,'Yangcl',1),
-(80160156,'用户退出系统接口','MANAGER-API-101','{}','private','matrix-manager-api','privates.ManagerApi101Processor',0,9,4,1,1,'退出系统登录|客户端用户：nodejs/IOS平板等','2018-10-11 15:51:16',1992,'Yangcl','2019-03-27 19:27:43',1992,'Yangcl',1),
-(80160157,'用户列表页数据','MANAGER-API-102','{\"startIndex\":1,\"pageSize\":10,\"cid\":-1}','private','matrix-manager-api','privates.ManagerApi102Processor',0,9,5,1,1,'用户列表页数据展示','2018-10-11 15:52:16',1992,'Yangcl','2020-01-10 17:35:11',2,'Yangcl',1),
-(80160158,'添加用户界面-绘制所属公司和平台分配两个控件','MANAGER-API-103',NULL,'private','matrix-manager-api','privates.ManagerApi103Processor',0,9,6,1,1,'添加用户界面-绘制所属公司（下拉框列表）和平台分配（单选按钮）','2018-10-12 11:37:29',1992,'Yangcl','2018-10-12 11:37:29',1992,'Yangcl',1),
-(80160183,'添加用户','MANAGER-API-104',NULL,'private','matrix-manager-api','privates.ManagerApi104Processor',0,9,7,1,1,'添加用户|MANAGER-API-104','2018-10-12 19:40:09',1992,'Yangcl','2018-10-12 19:53:39',1992,'Yangcl',1),
-(80160184,'获取用户详情','MANAGER-API-105','{\"id\":20072026234148}','private','matrix-manager-api','privates.ManagerApi105Processor',0,9,8,1,1,'在进入编辑页面时 -> 获取用户详情 -> 展示用户信息','2018-10-12 19:53:32',1992,'Yangcl','2019-08-27 14:59:01',20072026234128,'XuTao',1),
-(80160185,'修改用户信息','MANAGER-API-106',NULL,'private','matrix-manager-api','privates.ManagerApi106Processor',0,9,9,1,1,'修改用户信息','2018-10-12 20:07:12',1992,'Yangcl','2018-10-12 20:07:12',1992,'Yangcl',1),
-(80160186,'删除一个用户|不保留数据库中的记录','MANAGER-API-107',NULL,'private','matrix-manager-api','privates.ManagerApi107Processor',0,9,10,1,1,'删除一个用户|不保留数据库中的记录|物理删除','2018-10-12 20:08:00',1992,'Yangcl','2018-10-12 20:08:00',1992,'Yangcl',1),
-(80160187,'用户选择后台页面样式风格','MANAGER-API-108',NULL,'private','matrix-manager-api','privates.ManagerApi108Processor',0,9,11,1,1,'用户自己选择后台页面样式风格','2018-10-12 20:14:21',1992,'Yangcl','2018-10-12 20:14:42',1992,'Yangcl',1),
-(80160188,'获取功能树列表','MANAGER-API-109',NULL,'private','matrix-manager-api','privates.ManagerApi109Processor',0,9,12,1,1,'获取树列表|sys-user-role-function.js使用2次\r\ndto.platform 如果不为空则获取指定平台下的功能节点\r\ndto.type type=list or role|如果type=role则同时获得角色列表，同时dto.id = roleId','2018-10-13 14:49:08',1992,'Yangcl','2018-10-13 14:49:08',1992,'Yangcl',1),
-(80160189,'系统角色列表数据','MANAGER-API-110',NULL,'private','matrix-manager-api','privates.ManagerApi110Processor',0,9,13,1,1,'系统角色列表数据','2018-10-13 15:05:00',1992,'Yangcl','2018-10-13 15:05:00',1992,'Yangcl',1),
-(80160190,'展示权限列表|如果用户已经有权限了则标识出来','MANAGER-API-111',NULL,'private','matrix-manager-api','privates.ManagerApi111Processor',0,9,14,1,1,'展示权限列表|如果用户已经有权限了则标识出来','2018-10-13 15:12:46',1992,'Yangcl','2018-10-13 15:12:46',1992,'Yangcl',1),
-(80160191,'添加一个角色，不勾选系统功能','MANAGER-API-112',NULL,'private','matrix-manager-api','privates.ManagerApi112Processor',0,9,15,1,1,'添加一个角色，不勾选系统功能','2018-10-13 15:34:20',1992,'Yangcl','2018-10-13 15:34:20',1992,'Yangcl',1),
-(80160192,'角色详情','MANAGER-API-113',NULL,'private','matrix-manager-api','privates.ManagerApi113Processor',0,9,16,1,1,'唯一参数：info.id mc_role表自增id。','2018-10-13 15:52:59',1992,'Yangcl','2018-10-13 16:01:16',1992,'Yangcl',1),
-(80160193,'修改角色名称|角色编辑页面的提交按钮','MANAGER-API-114',NULL,'private','matrix-manager-api','privates.ManagerApi114Processor',0,9,17,1,1,'修改角色名称和描述，不勾选系统功能|角色编辑页面的提交按钮','2018-10-13 16:03:13',1992,'Yangcl','2018-10-15 16:44:02',1992,'Yangcl',1),
-(80160217,'添加系统功能','MANAGER-API-115',NULL,'private','matrix-manager-api','privates.ManagerApi115Processor',0,9,18,1,1,'添加系统功能到数据库-mc_sys_function表添加记录','2018-10-15 14:37:25',1992,'Yangcl','2018-10-15 14:37:25',1992,'Yangcl',1),
-(80160218,'更新系统功能','MANAGER-API-116',NULL,'private','matrix-manager-api','privates.ManagerApi116Processor',0,9,19,1,1,'更新系统功能到数据库-mc_sys_function表添加记录','2018-10-15 14:38:18',1992,'Yangcl','2018-10-15 14:38:18',1992,'Yangcl',1),
-(80160219,'系统功能同层节点拖拽更新','MANAGER-API-117',NULL,'private','matrix-manager-api','privates.ManagerApi117Processor',0,9,20,1,1,'更新拖拽后的同层节点|dto.ustring id@seqnum,id@seqnum','2018-10-15 14:57:57',1992,'Yangcl','2018-10-15 14:57:57',1992,'Yangcl',1),
-(80160220,'删除一个系统功能节点及其子节点','MANAGER-API-118',NULL,'private','matrix-manager-api','privates.ManagerApi118Processor',0,9,21,1,1,'删除一个系统功能节点及其子节点','2018-10-15 15:28:12',1992,'Yangcl','2018-10-15 15:28:12',1992,'Yangcl',1),
-(80160221,'创建系统角色','MANAGER-API-119',NULL,'private','matrix-manager-api','privates.ManagerApi119Processor',0,9,22,1,1,'创建系统角色','2018-10-15 15:58:10',1992,'Yangcl','2018-10-15 15:58:10',1992,'Yangcl',1),
-(80160222,'修改角色功能|【角色列表】->【角色功能】->【提交按钮】','MANAGER-API-120',NULL,'private','matrix-manager-api','privates.ManagerApi120Processor',0,9,23,1,1,'修改系统角色功能|【角色列表】->【角色功能】->【提交按钮】','2018-10-15 16:45:16',1992,'Yangcl','2018-10-15 16:52:48',1992,'Yangcl',1),
-(80160223,'删除角色','MANAGER-API-121',NULL,'private','matrix-manager-api','privates.ManagerApi121Processor',0,9,24,1,1,' 需要判断 mc_user_role 表中是否已经关联了用户，如果关联了，则不允许删除；如果想删除则必选先将用户与该角色解除绑定，即：删除mc_user_role表中的关联记录','2018-10-15 16:51:01',1992,'Yangcl','2018-10-15 16:51:01',1992,'Yangcl',1),
-(80160224,'关联用户与某一个角色','MANAGER-API-122',NULL,'private','matrix-manager-api','privates.ManagerApi122Processor',0,9,25,1,1,'关联用户与某一个角色','2018-10-15 17:12:39',1992,'Yangcl','2018-10-15 17:12:39',1992,'Yangcl',1),
-(80160225,'解除角色绑定','MANAGER-API-123',NULL,'private','matrix-manager-api','privates.ManagerApi123Processor',0,9,26,1,1,'解除角色绑定，同时删除缓存','2018-10-15 17:16:21',1992,'Yangcl','2018-10-15 17:16:21',1992,'Yangcl',1),
-(80160262,'公司组织机构数列表数据','MANAGER-API-124',NULL,'private','matrix-manager-api','privates.ManagerApi124Processor',0,9,27,1,1,'公司组织结构数列表数据','2018-10-26 18:05:43',2000,'Shaohua.ma','2018-10-26 18:15:56',2000,'Shaohua.ma',1),
-(80160263,'删除多个组织机构节点','MANAGER-API-127',NULL,'private','matrix-manager-api','privates.ManagerApi127Processor',0,9,28,1,1,'删除多个组织结构节点','2018-10-26 18:06:56',2000,'Shaohua.ma','2018-10-26 18:16:42',2000,'Shaohua.ma',1),
-(80160264,'添加一个组织结构节点到数据库','MANAGER-API-125',NULL,'private','matrix-manager-api','privates.ManagerApi125Processor',0,9,29,1,1,'添加一个组织结构节点到数据库','2018-10-26 18:07:38',2000,'Shaohua.ma','2018-10-26 18:16:08',2000,'Shaohua.ma',1),
-(80160265,'编辑一个组织机构节点','MANAGER-API-126',NULL,'private','matrix-manager-api','privates.ManagerApi126Processor',0,9,30,1,1,'编辑一个组织机构节点','2018-10-26 18:08:19',2000,'Shaohua.ma','2018-10-26 18:16:36',2000,'Shaohua.ma',1),
-(80160266,'系统功能同层节点拖拽更新','MANAGER-API-128',NULL,'private','matrix-manager-api','privates.ManagerApi128Processor',0,9,31,1,1,'系统功能同层节点拖拽更新','2018-10-26 18:08:56',2000,'Shaohua.ma','2018-10-26 18:16:16',2000,'Shaohua.ma',1),
-(80160275,'修改用户密码','MANAGER-API-129',NULL,'private','matrix-api','privates.ManagerApi129Processor',0,9,32,1,1,'修改用户密码','2018-10-30 16:59:55',2000,'Shaohua.ma','2018-10-30 16:59:55',2000,'Shaohua.ma',1),
-(80160276,'数据权限','MANAGER-API-130',NULL,'private','matrix-api','privates.ManagerApi130Processor',0,9,33,1,1,'数据权限','2018-10-31 11:27:20',2000,'Shaohua.ma','2018-10-31 11:27:20',2000,'Shaohua.ma',1),
-(80160277,'文件上传接口','Api-File-Remote-Upload',NULL,'private','matrix-api','common.ApiFileRemoteUpload',0,1,1,1,1,'系统文件上传接口|平台公共接口的一部分','2018-11-01 16:12:56',1992,'Yangcl','2018-11-01 16:12:56',1992,'Yangcl',0),
-(80160318,'门店列表数据','MANAGER-API-131',NULL,'private','matrix-api','privates.ManagerApi131Processor',0,9,34,1,1,'门店列表数据','2018-11-20 17:54:38',1991,'wangju','2018-11-20 17:54:38',1991,'wangju',1),
-(80160325,'获取API接口项目中的Config配置信息','API-COMMON-CONFIG-INFO','{}','private','matrix-api','common.ApiFindConfigInfoProcessor',0,8,8,1,1,'获取API接口项目中的Config配置信息|如果部署多个API接口服务器，则可能随机获取其中的一个，但会返回一个标识的IP地址作为区分依据','2018-11-26 19:09:15',1992,'Yangcl','2020-01-13 09:33:07',2,'Yangcl',1),
-(80160326,'获取验证码接口','MANAGER-API-140','{}','private','matrix-manager-api','privates.ManagerApi140Processor',0,9,37,1,0,'API:获取验证码接口','2018-11-27 14:49:48',1994,'wanghao','2019-03-27 19:11:03',1992,'Yangcl',1),
-(80160327,'用户关联数据权限','MANAGER-API-134',NULL,'private','matrix-manager-api','privates.ManagerApi134Processor',0,9,38,1,1,'用户关联数据权限','2018-11-28 17:28:35',2000,'Shaohua.ma','2018-11-28 17:28:35',2000,'Shaohua.ma',1),
-(80160329,'区域门店集合','MANAGER-API-141',NULL,'private','matrix-manager-api','privates.ManagerApi141Processor',0,9,39,1,1,'获取区域门店集合','2018-12-18 10:46:18',2000,'Shaohua.ma','2018-12-18 10:46:18',2000,'Shaohua.ma',1),
-(80160340,'获取登录用户的角色','MANAGER-API-142',NULL,'private','matrix-manager-api','privates.ManagerApi142Processor',0,9,40,1,1,'获取登录用户的角色','2018-12-19 19:14:11',2000,'Shaohua.ma','2018-12-19 19:14:11',2000,'Shaohua.ma',1),
-(80161081,'1111','1222222222','{}','private','aaaaa','private.aaaawwwwww',0,8,9,1,1,'3124','2020-01-13 09:32:57',2,'Yangcl','2020-01-13 09:33:39',2,'Yangcl',0),
-(80161082,'13123123','125123123','{}','private','122222222222','private.sdi25woieutae',0,8,9,1,1,'q25140000000','2020-01-13 09:46:31',2,'Yangcl','2020-01-13 16:16:34',2,'Yangcl',0),
-(80161083,'1241231231','23123123123','{}','private','sfrqr','private.asdiealkdf',1,8,9,1,1,'23123123weqwe2','2020-01-13 16:19:31',2,'Yangcl','2021-03-15 17:14:48',2,'Yangcl',0),
-(80161084,'威尔','aset','{}','private','matrix-api','common.ApiFindConfigInfoProcessorss',0,8,9,1,1,'ads3 ','2021-03-15 17:23:39',2,'Yangcl','2021-03-15 17:25:13',2,'Yangcl',0),
-(80161085,'h35he','egrg','{}','private','adsf','common.ApiFindConfigInfoProcessorer',0,8,10,1,1,'sdg','2021-03-15 17:24:13',2,'Yangcl','2021-03-15 17:25:08',2,'Yangcl',0),
-(80161086,'4gy23','fdawe','{}','private','sdafwfe','common.ApiFindConfigInfoProcessorsde',0,8,9,1,1,'swer','2021-03-15 17:28:39',2,'Yangcl','2021-03-15 17:43:00',2,'Yangcl',0),
-(80161087,'agt2r3r231241wererqwr','common.ApiFindConfigInfoProceas','{}','private','adsfadsf','common.ApiFindConfigInfoProceser3r2',0,8,10,1,1,'asdfer 122','2021-03-15 17:35:16',2,'Yangcl','2021-03-15 17:43:03',2,'Yangcl',0),
-(80161088,'fafarw3r23','sdfasfasdfadf','{}','private','asdfadf','common.ApiFindConfigInfoProcessorsdeerw',0,8,11,1,1,'asdfadfadfadf','2021-03-15 17:36:29',2,'Yangcl','2021-03-15 17:47:56',2,'Yangcl',0),
-(80161089,'asf3rtrfqwr','sdgqrgqrger','{}','private','asdfaf','common.ApiFindConfigIs',0,8,12,1,1,'adsfasdfasdfadfasdf','2021-03-15 17:42:16',2,'Yangcl','2021-03-15 17:47:59',2,'Yangcl',0);
+(80160101,'根据API的target返回DTO的Json文本','API-COMMON-FIND-DTO',NULL,'private','matrix-api','common.ApiFindDtoProcessor',0,8,6,1,1,'根据API缓存的target返回查询消息体','2018-10-09 11:07:55',2,'Yangcl','2018-11-16 11:31:33',2,'Yangcl',1),
+(80160102,'根据Api请求者的key，找到对应的value','API-COMMON-FIND-VALUE-BY-KEY','{}','private','matrix-api','common.ApiFindValueByKey',0,8,7,0,1,'根据请求者的key，找到对应的value','2018-10-09 11:10:39',2,'Yangcl','2020-01-10 18:02:00',2,'Yangcl',1),
+(80160155,'用户登录接口','MANAGER-API-100','{\"userName\":\"admin-mdl\",\"password\":\"123456\",\r\n\"platform\":\"134160222D87\"}','private','matrix-manager-api','privates.ManagerApi100Processor',0,9,3,1,0,'验证用户登录信息|客户端用户：nodejs/IOS平板等','2018-10-11 15:49:38',2,'Yangcl','2021-03-15 15:26:50',2,'Yangcl',1),
+(80160156,'用户退出系统接口','MANAGER-API-101','{}','private','matrix-manager-api','privates.ManagerApi101Processor',0,9,4,1,1,'退出系统登录|客户端用户：nodejs/IOS平板等','2018-10-11 15:51:16',2,'Yangcl','2019-03-27 19:27:43',2,'Yangcl',1),
+(80160157,'用户列表页数据','MANAGER-API-102','{\"startIndex\":1,\"pageSize\":10,\"cid\":-1}','private','matrix-manager-api','privates.ManagerApi102Processor',0,9,5,1,1,'用户列表页数据展示','2018-10-11 15:52:16',2,'Yangcl','2020-01-10 17:35:11',2,'Yangcl',1),
+(80160158,'添加用户界面-绘制所属公司和平台分配两个控件','MANAGER-API-103',NULL,'private','matrix-manager-api','privates.ManagerApi103Processor',0,9,6,1,1,'添加用户界面-绘制所属公司（下拉框列表）和平台分配（单选按钮）','2018-10-12 11:37:29',2,'Yangcl','2018-10-12 11:37:29',2,'Yangcl',1),
+(80160183,'添加用户','MANAGER-API-104',NULL,'private','matrix-manager-api','privates.ManagerApi104Processor',0,9,7,1,1,'添加用户|MANAGER-API-104','2018-10-12 19:40:09',2,'Yangcl','2018-10-12 19:53:39',2,'Yangcl',1),
+(80160184,'获取用户详情','MANAGER-API-105','{\"id\":20072026234148}','private','matrix-manager-api','privates.ManagerApi105Processor',0,9,8,1,1,'在进入编辑页面时 -> 获取用户详情 -> 展示用户信息','2018-10-12 19:53:32',2,'Yangcl','2019-08-27 14:59:01',2,'Yangcl',1),
+(80160185,'修改用户信息','MANAGER-API-106',NULL,'private','matrix-manager-api','privates.ManagerApi106Processor',0,9,9,1,1,'修改用户信息','2018-10-12 20:07:12',2,'Yangcl','2018-10-12 20:07:12',2,'Yangcl',1),
+(80160186,'删除一个用户|不保留数据库中的记录','MANAGER-API-107',NULL,'private','matrix-manager-api','privates.ManagerApi107Processor',0,9,10,1,1,'删除一个用户|不保留数据库中的记录|物理删除','2018-10-12 20:08:00',2,'Yangcl','2018-10-12 20:08:00',2,'Yangcl',1),
+(80160187,'用户选择后台页面样式风格','MANAGER-API-108',NULL,'private','matrix-manager-api','privates.ManagerApi108Processor',0,9,11,1,1,'用户自己选择后台页面样式风格','2018-10-12 20:14:21',2,'Yangcl','2018-10-12 20:14:42',2,'Yangcl',1),
+(80160188,'获取功能树列表','MANAGER-API-109',NULL,'private','matrix-manager-api','privates.ManagerApi109Processor',0,9,12,1,1,'获取树列表|sys-user-role-function.js使用2次\r\ndto.platform 如果不为空则获取指定平台下的功能节点\r\ndto.type type=list or role|如果type=role则同时获得角色列表，同时dto.id = roleId','2018-10-13 14:49:08',2,'Yangcl','2018-10-13 14:49:08',2,'Yangcl',1),
+(80160189,'系统角色列表数据','MANAGER-API-110',NULL,'private','matrix-manager-api','privates.ManagerApi110Processor',0,9,13,1,1,'系统角色列表数据','2018-10-13 15:05:00',2,'Yangcl','2018-10-13 15:05:00',2,'Yangcl',1),
+(80160190,'展示权限列表|如果用户已经有权限了则标识出来','MANAGER-API-111',NULL,'private','matrix-manager-api','privates.ManagerApi111Processor',0,9,14,1,1,'展示权限列表|如果用户已经有权限了则标识出来','2018-10-13 15:12:46',2,'Yangcl','2018-10-13 15:12:46',2,'Yangcl',1),
+(80160191,'添加一个角色，不勾选系统功能','MANAGER-API-112',NULL,'private','matrix-manager-api','privates.ManagerApi112Processor',0,9,15,1,1,'添加一个角色，不勾选系统功能','2018-10-13 15:34:20',2,'Yangcl','2018-10-13 15:34:20',2,'Yangcl',1),
+(80160192,'角色详情','MANAGER-API-113',NULL,'private','matrix-manager-api','privates.ManagerApi113Processor',0,9,16,1,1,'唯一参数：info.id mc_role表自增id。','2018-10-13 15:52:59',2,'Yangcl','2018-10-13 16:01:16',2,'Yangcl',1),
+(80160193,'修改角色名称|角色编辑页面的提交按钮','MANAGER-API-114',NULL,'private','matrix-manager-api','privates.ManagerApi114Processor',0,9,17,1,1,'修改角色名称和描述，不勾选系统功能|角色编辑页面的提交按钮','2018-10-13 16:03:13',2,'Yangcl','2018-10-15 16:44:02',2,'Yangcl',1),
+(80160217,'添加系统功能','MANAGER-API-115',NULL,'private','matrix-manager-api','privates.ManagerApi115Processor',0,9,18,1,1,'添加系统功能到数据库-mc_sys_function表添加记录','2018-10-15 14:37:25',2,'Yangcl','2018-10-15 14:37:25',2,'Yangcl',1),
+(80160218,'更新系统功能','MANAGER-API-116',NULL,'private','matrix-manager-api','privates.ManagerApi116Processor',0,9,19,1,1,'更新系统功能到数据库-mc_sys_function表添加记录','2018-10-15 14:38:18',2,'Yangcl','2018-10-15 14:38:18',2,'Yangcl',1),
+(80160219,'系统功能同层节点拖拽更新','MANAGER-API-117',NULL,'private','matrix-manager-api','privates.ManagerApi117Processor',0,9,20,1,1,'更新拖拽后的同层节点|dto.ustring id@seqnum,id@seqnum','2018-10-15 14:57:57',2,'Yangcl','2018-10-15 14:57:57',2,'Yangcl',1),
+(80160220,'删除一个系统功能节点及其子节点','MANAGER-API-118',NULL,'private','matrix-manager-api','privates.ManagerApi118Processor',0,9,21,1,1,'删除一个系统功能节点及其子节点','2018-10-15 15:28:12',2,'Yangcl','2018-10-15 15:28:12',2,'Yangcl',1),
+(80160221,'创建系统角色','MANAGER-API-119',NULL,'private','matrix-manager-api','privates.ManagerApi119Processor',0,9,22,1,1,'创建系统角色','2018-10-15 15:58:10',2,'Yangcl','2018-10-15 15:58:10',2,'Yangcl',1),
+(80160222,'修改角色功能|【角色列表】->【角色功能】->【提交按钮】','MANAGER-API-120',NULL,'private','matrix-manager-api','privates.ManagerApi120Processor',0,9,23,1,1,'修改系统角色功能|【角色列表】->【角色功能】->【提交按钮】','2018-10-15 16:45:16',2,'Yangcl','2018-10-15 16:52:48',2,'Yangcl',1),
+(80160223,'删除角色','MANAGER-API-121',NULL,'private','matrix-manager-api','privates.ManagerApi121Processor',0,9,24,1,1,' 需要判断 mc_user_role 表中是否已经关联了用户，如果关联了，则不允许删除；如果想删除则必选先将用户与该角色解除绑定，即：删除mc_user_role表中的关联记录','2018-10-15 16:51:01',2,'Yangcl','2018-10-15 16:51:01',2,'Yangcl',1),
+(80160224,'关联用户与某一个角色','MANAGER-API-122',NULL,'private','matrix-manager-api','privates.ManagerApi122Processor',0,9,25,1,1,'关联用户与某一个角色','2018-10-15 17:12:39',2,'Yangcl','2018-10-15 17:12:39',2,'Yangcl',1),
+(80160225,'解除角色绑定','MANAGER-API-123',NULL,'private','matrix-manager-api','privates.ManagerApi123Processor',0,9,26,1,1,'解除角色绑定，同时删除缓存','2018-10-15 17:16:21',2,'Yangcl','2018-10-15 17:16:21',2,'Yangcl',1),
+(80160262,'公司组织机构数列表数据','MANAGER-API-124',NULL,'private','matrix-manager-api','privates.ManagerApi124Processor',0,9,27,1,1,'公司组织结构数列表数据','2018-10-26 18:05:43',2,'Yangcl','2018-10-26 18:15:56',2,'Yangcl',1),
+(80160263,'删除多个组织机构节点','MANAGER-API-127',NULL,'private','matrix-manager-api','privates.ManagerApi127Processor',0,9,28,1,1,'删除多个组织结构节点','2018-10-26 18:06:56',2,'Yangcl','2018-10-26 18:16:42',2,'Yangcl',1),
+(80160264,'添加一个组织结构节点到数据库','MANAGER-API-125',NULL,'private','matrix-manager-api','privates.ManagerApi125Processor',0,9,29,1,1,'添加一个组织结构节点到数据库','2018-10-26 18:07:38',2,'Yangcl','2018-10-26 18:16:08',2,'Yangcl',1),
+(80160265,'编辑一个组织机构节点','MANAGER-API-126',NULL,'private','matrix-manager-api','privates.ManagerApi126Processor',0,9,30,1,1,'编辑一个组织机构节点','2018-10-26 18:08:19',2,'Yangcl','2018-10-26 18:16:36',2,'Yangcl',1),
+(80160266,'系统功能同层节点拖拽更新','MANAGER-API-128',NULL,'private','matrix-manager-api','privates.ManagerApi128Processor',0,9,31,1,1,'系统功能同层节点拖拽更新','2018-10-26 18:08:56',2,'Yangcl','2018-10-26 18:16:16',2,'Yangcl',1),
+(80160275,'修改用户密码','MANAGER-API-129',NULL,'private','matrix-api','privates.ManagerApi129Processor',0,9,32,1,1,'修改用户密码','2018-10-30 16:59:55',2,'Yangcl','2018-10-30 16:59:55',2,'Yangcl',1),
+(80160276,'数据权限','MANAGER-API-130',NULL,'private','matrix-api','privates.ManagerApi130Processor',0,9,33,1,1,'数据权限','2018-10-31 11:27:20',2,'Yangcl','2018-10-31 11:27:20',2,'Yangcl',1),
+(80160277,'文件上传接口','Api-File-Remote-Upload',NULL,'private','matrix-api','common.ApiFileRemoteUpload',0,1,1,1,1,'系统文件上传接口|平台公共接口的一部分','2018-11-01 16:12:56',2,'Yangcl','2018-11-01 16:12:56',2,'Yangcl',0),
+(80160318,'门店列表数据','MANAGER-API-131',NULL,'private','matrix-api','privates.ManagerApi131Processor',0,9,34,1,1,'门店列表数据','2018-11-20 17:54:38',2,'Yangcl','2018-11-20 17:54:38',2,'Yangcl',1),
+(80160325,'获取API接口项目中的Config配置信息','API-COMMON-CONFIG-INFO','{}','private','matrix-api','common.ApiFindConfigInfoProcessor',0,8,8,1,1,'获取API接口项目中的Config配置信息|如果部署多个API接口服务器，则可能随机获取其中的一个，但会返回一个标识的IP地址作为区分依据','2018-11-26 19:09:15',2,'Yangcl','2020-01-13 09:33:07',2,'Yangcl',1),
+(80160326,'获取验证码接口','MANAGER-API-140','{}','private','matrix-manager-api','privates.ManagerApi140Processor',0,9,37,1,0,'API:获取验证码接口','2018-11-27 14:49:48',2,'Yangcl','2019-03-27 19:11:03',2,'Yangcl',1),
+(80160327,'用户关联数据权限','MANAGER-API-134',NULL,'private','matrix-manager-api','privates.ManagerApi134Processor',0,9,38,1,1,'用户关联数据权限','2018-11-28 17:28:35',2,'Yangcl','2018-11-28 17:28:35',2,'Yangcl',1),
+(80160329,'区域门店集合','MANAGER-API-141',NULL,'private','matrix-manager-api','privates.ManagerApi141Processor',0,9,39,1,1,'获取区域门店集合','2018-12-18 10:46:18',2,'Yangcl','2018-12-18 10:46:18',2,'Yangcl',1),
+(80160340,'获取登录用户的角色','MANAGER-API-142',NULL,'private','matrix-manager-api','privates.ManagerApi142Processor',0,9,40,1,1,'获取登录用户的角色','2018-12-19 19:14:11',2,'Yangcl','2018-12-19 19:14:11',2,'Yangcl',1),
+(80161090,'用户登录接口2','MANAGER-API-200','{id:1}','private','matrix-manager-api','privates.ManagerApi100Processor',1,32,1,0,0,'用户登录接口2','2021-07-16 18:37:40',2,'Yangcl','2021-07-16 18:48:47',2,'Yangcl',1);
 
 /*Table structure for table `ac_api_project` */
 
@@ -140,13 +136,15 @@ CREATE TABLE `ac_api_project` (
   `update_user_name` varchar(20) DEFAULT 'admin' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `ac_api_project` */
 
 insert  into `ac_api_project`(`id`,`target`,`atype`,`service_url`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
-(8,'平台公共接口-系统间调用','private','http://127.0.0.1:8085/api-public-web/manager/api.do','2018-09-27 19:16:11',1,'admin','2021-04-02 18:48:23',2,'Yangcl',1),
-(9,'系统后台权限接口','private','http://10.12.52.41:8080/matrix-admin/matrix/api.do','2018-09-27 19:16:11',1,'admin','2019-09-04 15:59:02',2,'Yangcl',1);
+(8,'平台公共接口-系统间调用','private','http://127.0.0.1:8080/leader/matrix/api.do','2018-09-27 19:16:11',1,'admin','2021-07-16 18:12:58',2,'Yangcl',1),
+(9,'系统后台权限接口','private','http://127.0.0.1:8080/leader/matrix/api.do','2018-09-27 19:16:11',1,'admin','2021-07-16 18:13:12',2,'Yangcl',1),
+(32,'内部项目A','private','http://127.0.0.1:8080/leader/matrix/api.do','2021-07-16 18:19:53',2,'Yangcl','2021-07-16 18:20:05',2,'Yangcl',1),
+(33,'系统开发调用接口A组','public','http://127.0.0.1:8080/leader/matrix/open-api.do','2021-07-16 18:20:35',2,'Yangcl','2021-07-16 18:34:47',2,'Yangcl',1);
 
 /*Table structure for table `ac_include_domain` */
 
@@ -167,18 +165,15 @@ CREATE TABLE `ac_include_domain` (
   `update_user_name` varchar(20) DEFAULT 'admin' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `ac_include_domain` */
 
 insert  into `ac_include_domain`(`id`,`domain`,`company_name`,`project`,`flag`,`remark`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
 (27,'www.baidu.com','百度科技','',1,NULL,'2019-12-27 17:46:42',2,'Yangcl','2019-12-27 17:46:42',2,'Yangcl',1),
-(29,'www.jd.wuliu.com','京东物流','',1,NULL,'2020-01-16 17:31:21',2,'Yangcl','2020-01-16 17:31:21',2,'Yangcl',1),
 (30,'www.china.com','中国政府','',1,NULL,'2020-01-17 09:37:48',2,'Yangcl','2020-01-17 09:37:48',2,'Yangcl',1),
-(31,'www.OSchain.com','OS-Chain2','',1,NULL,'2020-01-17 09:38:19',2,'Yangcl','2021-04-14 20:59:07',2,'Yangcl',1),
 (32,'www.power-matrix.shop','能量矩阵','',1,NULL,'2020-01-17 09:38:45',2,'Yangcl','2020-01-17 09:38:45',2,'Yangcl',1),
-(33,'www.taobao.com.cn','淘宝','',1,NULL,'2020-01-17 09:39:07',2,'Yangcl','2020-01-17 09:39:07',2,'Yangcl',1),
-(34,'www.nanhai.com','南海控股','',1,NULL,'2020-01-17 09:39:37',2,'Yangcl','2020-01-17 09:39:37',2,'Yangcl',1);
+(35,'www.jdcloud.com','jd cloud','',1,NULL,'2021-07-16 18:01:39',2,'Yangcl','2021-07-16 18:01:39',2,'Yangcl',1);
 
 /*Table structure for table `ac_request_info` */
 
@@ -199,15 +194,13 @@ CREATE TABLE `ac_request_info` (
   `update_user_name` varchar(20) DEFAULT '' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `ac_request_info` */
 
 insert  into `ac_request_info`(`id`,`organization`,`key`,`value`,`atype`,`flag`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
 (1,'电商中台','133C9C129D53','6DFA608D49324E47A5D69A13523BDFDA','private',1,'2018-09-28 10:29:51',1,'admin','2019-07-22 10:25:48',2,'Yangcl',1),
-(9,'developer-private','133C9CB27DA0','FD4007DB87B245EEACA7DAD5D4A1CECD','private',1,'2019-07-22 14:18:13',1,'Yangcl','2019-07-22 14:18:13',1,'Yangcl',1),
-(10,'22222222','13462F01958C','029D09DD33DE4BF1A737A5EC8752416A','public',0,'2021-04-16 10:38:20',2,'Yangcl','2021-04-16 11:43:03',2,'Yangcl',1),
-(11,'BTC','13462F01BE51','FA02F3107BE94C26BD44378C11D92739','private',1,'2021-04-16 11:42:58',2,'Yangcl','2021-04-16 11:42:58',2,'Yangcl',1);
+(9,'developer-private','133C9CB27DA0','FD4007DB87B245EEACA7DAD5D4A1CECD','private',1,'2019-07-22 14:18:13',1,'Yangcl','2019-07-22 14:18:13',1,'Yangcl',1);
 
 /*Table structure for table `ac_request_open_api` */
 
@@ -276,14 +269,15 @@ CREATE TABLE `job_group` (
   `update_user_name` varchar(20) DEFAULT 'admin' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `job_group` */
 
 insert  into `job_group`(`id`,`group_name`,`ip`,`remark`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
 (1,'matrix-quartz','10.12.52.41','matrix-quartz-test','2018-08-26 18:09:47',1,'admin','2021-05-06 15:44:29',2,'Yangcl',1),
 (14,'cn-north-1','10.12.52.41,10.12.52.42,10.12.52.43,10.12.52.44,10.12.52.45',NULL,'2021-05-06 14:56:49',2,'Yangcl','2021-05-06 14:56:49',2,'Yangcl',1),
-(15,'cn-north-2','10.12.52.2',NULL,'2021-05-06 16:20:44',2,'Yangcl','2021-05-06 16:21:29',2,'Yangcl',0);
+(15,'cn-north-2','10.12.52.2',NULL,'2021-05-06 16:20:44',2,'Yangcl','2021-05-06 16:21:29',2,'Yangcl',0),
+(16,'aaaaaaaa','bbbbbbbbb',NULL,'2021-07-15 20:23:44',2,'Yangcl','2021-07-15 20:24:03',2,'Yangcl',0);
 
 /*Table structure for table `job_info` */
 
@@ -317,7 +311,7 @@ CREATE TABLE `job_info` (
   `update_user_name` varchar(20) DEFAULT 'admin' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='定时任务列表';
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='定时任务列表';
 
 /*Data for the table `job_info` */
 
@@ -379,13 +373,14 @@ CREATE TABLE `mc_role` (
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   `company_id` bigint DEFAULT NULL COMMENT '公司id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=196 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `mc_role` */
 
 insert  into `mc_role`(`id`,`cid`,`type`,`platform`,`role_name`,`role_desc`,`remark`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`,`company_id`) values 
 (116,0,'leader','133C9CB27E18','administer','administer','','2019-07-16 10:44:25',1992,'Yangcl','2021-05-06 18:13:25',2,'Yangcl',1,NULL),
-(164,0,'leader','133C9CB27E18','开发示例','仅供测试','','2019-09-29 17:23:32',2,'Yangcl','2021-04-02 18:49:12',2,'Yangcl',1,NULL);
+(164,0,'leader','133C9CB27E18','开发示例','仅供测试','','2019-09-29 17:23:32',2,'Yangcl','2021-04-02 18:49:12',2,'Yangcl',1,NULL),
+(195,0,'leader','134641C1B16A','ceshi-role','ceshi-role',NULL,'2021-07-16 17:00:05',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1,NULL);
 
 /*Table structure for table `mc_role_function` */
 
@@ -404,7 +399,7 @@ CREATE TABLE `mc_role_function` (
   `update_user_name` varchar(20) DEFAULT '' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=19461 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=19491 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `mc_role_function` */
 
@@ -571,7 +566,22 @@ insert  into `mc_role_function`(`id`,`mc_role_id`,`mc_sys_function_id`,`remark`,
 (19457,116,499,'','2021-05-06 18:13:25',2,'Yangcl','2021-05-06 18:13:25',2,'Yangcl',1),
 (19458,116,1084,'','2021-05-06 18:13:25',2,'Yangcl','2021-05-06 18:13:25',2,'Yangcl',1),
 (19459,116,1085,'','2021-05-06 18:13:25',2,'Yangcl','2021-05-06 18:13:25',2,'Yangcl',1),
-(19460,116,1086,'','2021-05-06 18:13:25',2,'Yangcl','2021-05-06 18:13:25',2,'Yangcl',1);
+(19460,116,1086,'','2021-05-06 18:13:25',2,'Yangcl','2021-05-06 18:13:25',2,'Yangcl',1),
+(19476,195,1087,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19477,195,1090,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19478,195,1092,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19479,195,1096,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19480,195,1113,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19481,195,1114,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19482,195,1097,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19483,195,1106,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19484,195,1093,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19485,195,1098,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19486,195,1112,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19487,195,1099,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19488,195,1091,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19489,195,1095,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1),
+(19490,195,1094,NULL,'2021-07-16 17:00:13',2,'Yangcl','2021-07-16 17:00:13',2,'Yangcl',1);
 
 /*Table structure for table `mc_sys_function` */
 
@@ -601,120 +611,120 @@ CREATE TABLE `mc_sys_function` (
   `update_user_name` varchar(20) DEFAULT '' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1087 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=1115 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `mc_sys_function` */
 
 insert  into `mc_sys_function`(`id`,`mc_seller_company_id`,`name`,`parent_id`,`seqnum`,`nav_type`,`authorize`,`platform`,`style_class`,`style_key`,`func_url`,`ajax_btn_url`,`remark`,`btn_area`,`ele_value`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
-(1,1,'root：系统功能树','-1',1,-1,0,'','root','root','rool','','系统根节点','',NULL,'2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(75,1,'Leader','1',1,0,0,'133C9CB27E18','','','','','Leader底层管理系统','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(77,1,'开发示例','75',2,1,0,'133C9CB27E18','','','','','为系统开发这提供的示例','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(78,1,'矩阵系统配置','75',3,1,0,'133C9CB27E18','','','','','系统核心功能管理与控制','','','2018-07-28 16:42:40',1,'admin','2019-12-26 17:43:08',2,'Yangcl',1),
-(79,1,'开发者快速入门','77',2,2,0,'133C9CB27E18','editor','37c694131c304c2588c4b906567631b1','','','开发者快速入门','','','2018-07-28 16:42:40',1,'admin','2020-01-10 15:57:23',2,'Yangcl',1),
-(80,1,'实例样本','77',3,2,0,'133C9CB27E18','editor','0cf9aa57b07149d586cc8998af6cfe7d','','','实例样本','','','2018-07-28 16:42:40',1,'admin','2020-01-10 15:57:23',2,'Yangcl',1),
-(81,1,'系统用户相关','78',1,2,0,'133C9CB27E18','editor','b06962367f8640fcbf11d4bca147101b','','','系统用户相关','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(83,1,'添加信息示例','79',1,3,0,'133C9CB27E18','','','example/page_example_add_info.do','','添加信息示例|matrix-admin/jsp/example/addExample.jsp','','','2018-07-28 16:42:40',1,'admin','2020-01-10 16:25:16',2,'Yangcl',1),
-(84,1,'实际样本-A','80',1,3,0,'133C9CB27E18','','','example/page_example_a.do','','matrix-admin/src/main/webapp/jsp/example/reality/questionQuery.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(117,1,'系统用户列表','81',1,3,0,'133C9CB27E18','','','permissions/page_permissions_system_user_list.do','','leader/src/main/webapp/views/permission/user/system-user-list.jsp','','','2018-07-28 16:42:40',1,'admin','2019-12-11 14:51:18',2,'Yangcl',1),
-(118,1,'系统角色列表','81',2,3,0,'133C9CB27E18','','','permissions/page_permissions_system_role_list.do','','leader/src/main/webapp/views/permission/role/system-role-list.jsp','','','2018-07-28 16:42:40',1,'admin','2019-12-11 14:50:20',2,'Yangcl',1),
-(119,1,'系统功能列表','81',3,3,0,'133C9CB27E18','','','permissions/page_permissions_system_function.do','','leader/src/main/webapp/views/permission/func/system-func-tree.jsp','','','2018-07-28 16:42:40',1,'admin','2019-12-11 14:50:57',2,'Yangcl',1),
-(126,1,'Ajax 分页示例','79',2,3,0,'133C9CB27E18','','','example/page_example_ajax_form.do','','Ajax 分页示例|matrix-admin/jsp/example/ajaxFormExample.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(127,1,'Ajax 分页+弹出窗体分页 示例','79',3,3,0,'133C9CB27E18','','','example/page_example_ajax_form_dialog.do','','Ajax 分页+弹出窗体分页 示例|\r\nmatrix-admin/jsp/example/ajaxFormDialogExample.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(128,1,'实际样本-B','80',2,3,0,'133C9CB27E18','','','example/page_example_b.do','','matrix-admin/src/main/webapp/jsp/example/reality/validate.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(167,1,'添加','83',1,4,0,'133C9CB27E18','','','','ajax_btn_add_info','123123','10001','add_info_example:add','2018-07-28 16:42:40',1,'admin','2020-01-10 16:11:19',2,'Yangcl',1),
-(171,1,'查询','126',1,4,0,'133C9CB27E18','','','','','查询','10002','ajax_page_example:search','2018-07-28 16:42:40',1,'admin','2019-12-05 15:39:59',2,'Yangcl',1),
-(172,1,'查询','127',2,4,0,'133C9CB27E18','','','','','添加','10002','ajax_page_dialog_example:search','2018-07-28 16:42:40',1,'admin','2019-11-01 15:21:17',2,'Yangcl',1),
-(177,1,'添加','118',3,4,0,'133C9CB27E18','','','','ajax_btn_add_mc_role_only.do','sysrole/ajax_btn_add_mc_role_only.do','10001','system_role_list:add','2018-07-28 16:42:40',1,'admin','2019-12-11 14:00:38',2,'Yangcl',1),
-(187,1,'删除','126',3,4,0,'133C9CB27E18','','','','','删除','10003','ajax_page_example:delete','2018-07-28 16:42:40',1,'admin','2019-11-08 15:58:28',2,'Yangcl',1),
-(188,1,'修改','127',5,5,0,'133C9CB27E18','','','asdfasdf','','修改','10003','ajax_page_dialog_example:edit','2018-07-28 16:42:40',1,'admin','2019-11-01 15:21:17',2,'Yangcl',1),
-(192,1,'重置','126',2,4,0,'133C9CB27E18','','','','','重置','10002','ajax_page_example:reset','2018-07-28 16:42:40',1,'admin','2019-11-08 15:58:28',2,'Yangcl',1),
-(193,1,'重置','127',4,4,0,'133C9CB27E18','','','','','查看','10002','ajax_page_dialog_example:reset','2018-07-28 16:42:40',1,'admin','2019-11-01 15:21:17',2,'Yangcl',1),
-(197,1,'查询','117',1,4,0,'133C9CB27E18','','','','ajax_system_user_list.do','userInfo/ajax_system_user_list.do','10001','system_user_list:search','2018-07-28 16:42:40',1,'admin','2019-12-17 17:51:12',2,'Yangcl',1),
-(198,1,'查询','118',1,4,0,'133C9CB27E18','','','','ajax_system_role_list.do','sysrole/ajax_system_role_list.do','10001','system_role_list:search','2018-07-28 16:42:40',1,'admin','2019-12-11 13:59:35',2,'Yangcl',1),
-(208,1,'修改','126',4,4,0,'133C9CB27E18','','','','','修改','10003','ajax_page_example:edit','2018-07-28 16:42:40',1,'admin','2019-11-08 15:58:28',2,'Yangcl',1),
-(209,1,'自定义 alert confirm note 示例','79',4,3,0,'133C9CB27E18','','','example/page_example_alert.do','','自定义 alert confirm note 示例|matrix-admin/jsp/example/alertExample.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(210,1,'基本 Alert','209',1,4,0,'133C9CB27E18','','','','','基本 Alert','10001','custom_dialog_example:alert','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(211,1,'确认对话框 confirm','209',2,4,0,'133C9CB27E18','','','','','确认对话框 confirm','10001','custom_dialog_example:confirm','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(212,1,'输入对话框 prompt','209',3,4,0,'133C9CB27E18','','','','','输入对话框 prompt','10001','custom_dialog_example:prompt','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(213,1,'alert 支持html标签','209',4,4,0,'133C9CB27E18','','','','','alert 支持html标签','10001','custom_dialog_example:html','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(214,1,'弹出层示例','79',5,3,0,'133C9CB27E18','','','example/page_example_block_ui.do','','介绍系统常见的弹出层|matrix-admin/jsp/example/blockUiPageExample.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(215,1,'添加弹层示例','214',1,4,0,'133C9CB27E18','','','','','开头语','10001','dialog_example:add','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(227,1,'ueditor编辑器示例','80',4,3,0,'133C9CB27E18','','','example/page_example_ueditor.do','','matrix-admin/src/main/webapp/jsp/example/ueditorExample.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(249,1,'图片|文件上传','80',5,3,0,'133C9CB27E18','','','example/page_example_file_upload.do','','matrix-admin/src/main/webapp/jsp/example/pageExampleFileUpload.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(250,1,'项目介绍','77',1,2,0,'133C9CB27E18','editor','304180247f1044f6a9a56a78a407fdc3','','','项目介绍','','','2018-07-28 16:42:40',1,'admin','2020-01-10 15:57:23',2,'Yangcl',1),
-(251,1,'开发者规约-java','250',1,3,0,'133C9CB27E18','','','example/page_developer_specification.do','','开发者规约','','','2018-07-28 16:42:40',1,'admin','2019-11-08 10:53:42',2,'Yangcl',1),
-(252,1,'开发者规约-javascript','250',2,3,0,'133C9CB27E18','','','example/page_developer_specification_js.do','','开发者规约-javascript','','','2018-07-28 16:42:40',1,'admin','2019-12-11 11:33:25',2,'Yangcl',1),
-(253,1,'系统工具','78',2,2,0,'133C9CB27E18','editor','a6a534ca38384f8787a8306ea0f23651','','','系统配置与查询、缓存操作/查看、部署节点列表等','','','2018-07-28 16:42:40',1,'admin','2019-12-23 10:50:07',2,'Yangcl',1),
-(254,1,'缓存查看','253',1,3,0,'133C9CB27E18','','','cache/page_cache_system_cache.do','','查看系统中的缓存信息|views\\system\\cache\\system-cache.jsp','','','2018-07-28 16:42:40',1,'admin','2019-12-23 14:46:35',2,'Yangcl',1),
-(255,1,'缓存重置','253',2,3,0,'133C9CB27E18','','','cache/page_cache_reload.do','','缓存重置，用户的、字典的、其他的|/matrix-admin/jsp/syssetting/cache/cacheReload.jsp','','','2018-07-28 16:42:40',1,'admin','2019-12-23 11:11:32',2,'Yangcl',1),
-(257,1,'删除','127',7,4,0,'133C9CB27E18','','','','','删除','10003','ajax_page_dialog_example:delete','2018-07-28 16:42:40',1,'admin','2019-11-01 15:21:17',2,'Yangcl',1),
-(258,1,'弹窗分页','127',6,4,0,'133C9CB27E18','','','','','弹窗分页','10003','ajax_page_dialog_example:dialog','2018-07-28 16:42:40',1,'admin','2019-11-01 15:21:17',2,'Yangcl',1),
-(259,1,'自定义滚动条示例-ul-列表','214',2,4,0,'133C9CB27E18','','','','','自定义滚动条示例-ul-列表','10001','dialog_example:slim_scroll','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(260,1,'自定义滚动条示例-tree','214',3,4,0,'133C9CB27E18','','','','','自定义滚动条示例-tree','10001','dialog_example:slim_scroll:tree','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(261,1,'搜索日志信息','84',1,4,0,'133C9CB27E18','','','','','搜索日志信息','10001','btn-55ee0a123a05484d8cc22235b709c2ff','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(287,1,'系统开放接口','78',3,2,0,'133C9CB27E18','editor','d27673e123c9447f8c789ab260b3adb2','','','包含公司内部接口、开放给第三方的接口等。由这里进行统一管理','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(288,1,'api所属项目','287',1,3,0,'133C9CB27E18','','','apicenter/page_apicenter_api_project_list.do','','api所属项目-应对可能出现的多项目|ac_api_project表的数据|\r\nviews\\api\\project\\api-project-list.jsp','','','2018-07-28 16:42:40',1,'admin','2019-12-26 17:28:04',2,'Yangcl',1),
-(289,1,'查 询','288',1,4,0,'133C9CB27E18','','','','ajax_api_project_list.do','apicenter/ajax_api_project_list.do\r\n查 询','10002','api_project_list:search','2018-07-28 16:42:40',1,'admin','2019-12-27 13:50:12',2,'Yangcl',1),
-(290,1,'重 置','288',2,4,0,'133C9CB27E18','','','','ajax_api_project_list.do','apicenter/ajax_api_project_list.do\r\n重 置','10002','api_project_list:reset','2018-07-28 16:42:40',1,'admin','2019-12-27 13:50:41',2,'Yangcl',1),
-(291,1,'添加','288',3,4,0,'133C9CB27E18','','','','ajax_btn_api_project_add.do','添加 apicenter/ajax_btn_api_project_add.do','10001','api_project_list:add','2018-07-28 16:42:40',1,'admin','2019-12-27 13:51:37',2,'Yangcl',1),
-(292,1,'删除','288',4,4,0,'133C9CB27E18','','','','ajax_btn_api_project_delete.do','删除 apicenter/ajax_btn_api_project_delete.do','10003','api_project_list:delete','2018-07-28 16:42:40',1,'admin','2019-12-27 13:53:05',2,'Yangcl',1),
-(293,1,'修改','288',5,4,0,'133C9CB27E18','','','','ajax_btn_api_project_edit.do','修改 apicenter/ajax_btn_api_project_edit.do','10003','api_project_list:edit','2018-07-28 16:42:40',1,'admin','2019-12-27 13:52:09',2,'Yangcl',1),
-(294,1,'跨域白名单','287',2,3,0,'133C9CB27E18','','','apicenter/page_apicenter_include_domain_list.do','','记录系统允许跨域的域名|\r\nviews\\api\\domain\\api-include-domain-list.jsp','','','2018-07-28 16:42:40',1,'admin','2019-12-27 17:30:29',2,'Yangcl',1),
-(295,1,'查询','294',1,4,0,'133C9CB27E18','','','','ajax_include_domain_page_list.do','查询','10002','include_domain_list:search','2018-07-28 16:42:40',1,'admin','2021-03-15 16:13:19',2,'Yangcl',1),
-(296,1,'重置','294',2,4,0,'133C9CB27E18','','','','ajax_include_domain_page_list.do','重置','10002','include_domain_list:reset','2018-07-28 16:42:40',1,'admin','2021-03-15 16:13:31',2,'Yangcl',1),
-(297,1,'添加','294',3,4,0,'133C9CB27E18','','','','ajax_btn_api_domain_add.do','添加 apicenter/ajax_btn_api_domain_add.do','10001','include_domain_list:add','2018-07-28 16:42:40',1,'admin','2019-12-27 17:31:21',2,'Yangcl',1),
-(298,1,'删除','294',4,4,0,'133C9CB27E18','','','','ajax_btn_api_domain_delete.do','删除 apicenter/ajax_btn_api_domain_delete.do','10001','include_domain_list:delete','2018-07-28 16:42:40',1,'admin','2020-01-07 11:21:39',2,'Yangcl',1),
-(299,1,'修改','294',5,4,0,'133C9CB27E18','','','','ajax_btn_api_domain_edit.do','修改 apicenter/ajax_btn_api_domain_edit.do','10001','include_domain_list:edit','2018-07-28 16:42:40',1,'admin','2020-01-07 09:55:22',2,'Yangcl',1),
-(300,1,'api信息树','287',3,3,0,'133C9CB27E18','','','apicenter/page_apicenter_api_tree.do','','api信息树|views\\api\\info\\api-tree.jsp','','','2018-07-28 16:42:40',1,'admin','2020-01-07 16:32:06',2,'Yangcl',1),
-(301,1,'请求者信息','287',4,3,0,'133C9CB27E18','','','apicenter/page_apicenter_request_info.do','','请求者信息维护页面|\r\nmatrix-admin/src/main/webapp/jsp/api/request/api-request-info-list.jsp','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(302,1,'查 询','301',1,4,0,'133C9CB27E18','','','','ajax_request_info_list.do','查 询 apicenter/ajax_request_info_list.do','10002','api_requester_info:search','2018-07-28 16:42:40',1,'admin','2021-03-21 18:00:01',1,'admin',1),
-(303,1,'重 置','301',2,4,0,'133C9CB27E18','','','','ajax_request_info_list.do','重 置 apicenter/ajax_request_info_list.do','10002','api_requester_info:reset','2018-07-28 16:42:40',1,'admin','2021-03-21 18:00:06',1,'admin',1),
-(304,1,'添加','301',3,4,0,'133C9CB27E18','','','','','添加','10001','api_requester_info:add','2018-07-28 16:42:40',1,'admin','2020-01-07 16:38:40',2,'Yangcl',1),
-(305,1,'启用|禁用','301',4,4,0,'133C9CB27E18','','','','','删除','10003','api_requester_info:delete','2018-07-28 16:42:40',1,'admin','2020-01-07 16:38:40',2,'Yangcl',1),
-(306,1,'修改','301',5,4,0,'133C9CB27E18','','','','','修改','10003','api_requester_info:edit','2018-07-28 16:42:40',1,'admin','2020-01-07 16:38:40',2,'Yangcl',1),
-(308,1,'删除','83',2,4,0,'133C9CB27E18','','','','ajax_btn_delete_info','删除按钮','10001','add_info_example:delete','2018-07-28 16:42:40',1,'admin','2019-12-10 15:38:52',2,'Yangcl',1),
-(309,1,'弹窗-删除','127',1,4,0,'133C9CB27E18','','','','','弹窗中的删除按钮','10001','ajax_page_dialog_example:dialog:delete','2018-07-28 16:42:40',1,'admin','2019-11-01 15:21:17',2,'Yangcl',1),
-(310,1,'弹窗-编辑','127',3,4,0,'133C9CB27E18','','','','','弹窗中的编辑按钮','10001','ajax_page_dialog_example:dialog:edit','2018-07-28 16:42:40',1,'admin','2019-11-01 15:21:17',2,'Yangcl',1),
-(312,1,'重置','117',2,4,0,'133C9CB27E18','','','','ajax_system_user_list.do','userInfo/ajax_system_user_list.do','10002','system_user_list:reset','2018-07-28 16:42:40',1,'admin','2019-12-17 17:51:12',2,'Yangcl',1),
-(313,1,'添加','117',3,4,0,'133C9CB27E18','','','','ajax_btn_add_system_user.do','userInfo/ajax_btn_add_system_user.do','10002','system_user_list:add','2018-07-28 16:42:40',1,'admin','2019-12-17 17:51:12',2,'Yangcl',1),
-(314,1,'删除','117',4,4,0,'133C9CB27E18','','','','ajax_btn_delete_system_user.do','userInfo/ajax_btn_delete_system_user.do','10003','system_user_list:delete','2018-07-28 16:42:40',1,'admin','2019-12-17 17:51:12',2,'Yangcl',1),
-(315,1,'修改','117',5,4,0,'133C9CB27E18','','','','ajax_btn_edit_sys_user.do','userInfo/ajax_btn_edit_sys_user.do','10003','system_user_list:edit','2018-07-28 16:42:40',1,'admin','2019-12-17 17:51:12',2,'Yangcl',1),
-(316,1,'用户角色','117',7,5,0,'133C9CB27E18','','','dialog_permissions_system_role_list.do','','permissions/dialog_permissions_system_role_list.do','10001','system_user_list:user_role','2018-07-28 16:42:40',1,'admin','2019-12-17 17:51:12',2,'Yangcl',1),
-(317,1,'系统角色列表-弹框-分配','117',11,4,0,'133C9CB27E18','','','','ajax_btn_allot_user_role_submit.do','sysrole/ajax_btn_allot_user_role_submit.do\r\n给指定用户分配一个角色','10003','system_user_list:allot_submit','2018-07-28 16:42:40',1,'admin','2019-12-17 17:51:12',2,'Yangcl',1),
-(318,1,'重置','118',2,4,0,'133C9CB27E18','','','','ajax_system_role_list.do','sysrole/ajax_system_role_list.do','10001','system_role_list:reset','2018-07-28 16:42:40',1,'admin','2019-12-11 13:59:55',2,'Yangcl',1),
-(319,1,'角色功能','118',4,4,0,'133C9CB27E18','','','','default','default：仅做权限控制，不发起ajax请求','10001','system_role_list:role_function','2018-07-28 16:42:40',1,'admin','2019-12-11 14:09:52',2,'Yangcl',1),
-(320,1,'修改','118',5,4,0,'133C9CB27E18','','','','ajax_btn_edit_mc_role_only.do','sysrole/ajax_btn_edit_mc_role_only.do','10001','system_role_list:edit','2018-07-28 16:42:40',1,'admin','2019-12-11 14:01:17',2,'Yangcl',1),
-(321,1,'删除','118',6,4,0,'133C9CB27E18','','','','ajax_btn_delete_mc_role.do','sysrole/ajax_btn_delete_mc_role.do','10001','system_role_list:delete','2018-07-28 16:42:40',1,'admin','2019-12-11 14:01:41',2,'Yangcl',1),
-(322,1,'角色功能弹窗-提交','118',7,4,0,'133C9CB27E18','','','','ajax_btn_edit_mc_role.do','sysrole/ajax_btn_edit_mc_role.do','10001','system_role_list:dialog_submit','2018-07-28 16:42:40',1,'admin','2019-12-11 14:13:08',2,'Yangcl',1),
-(323,1,'保存|修改','300',1,4,0,'133C9CB27E18','','','','default','保存|修改。页面展示为【保存】按钮，但针对添加行为对应apicenter/ajax_api_info_add.do，针对修改行为对应apicenter/ajax_api_info_edit.do。由于同一个按钮对应两种Controller请求路径，所以【按钮请求路径】初设置为default','10001','api_tree:submit','2018-07-28 16:42:40',1,'admin','2020-01-07 16:53:39',2,'Yangcl',1),
-(325,1,'完整开发流程','77',4,2,0,'133C9CB27E18','editor','51e91e7ba11d4a61918d100dd124d9f0','','','贴近实际业务来展示一个完整的开发流程','','','2018-07-28 16:42:40',1,'admin','2020-01-10 15:57:23',2,'Yangcl',1),
-(326,1,'楼盘信息开发实例','325',1,3,0,'133C9CB27E18','','','demos/page_demo_landed_property.do','','复制即所得，抄永远比写来的快。但请小心别抄错了。。','','','2018-07-28 16:42:40',1,'admin','2018-07-28 16:42:44',1,'admin',1),
-(465,1,'dubbo-admin','78',4,2,0,'133C9CB27E18','editor','17f2b7b4b60f455e8fdcbb3a6e37fe4b','','','','','','2018-11-04 13:02:19',1990,'jinghao.sun','2018-11-04 13:02:19',1990,'jinghao.sun',1),
-(466,1,'Dubbo应用服务列表','465',1,3,0,'133C9CB27E18','','','application/page_application_dubbo_project_list.do','',' @description: Dubbo应用服务列表|Dubbo项目名称列表','','','2018-11-04 13:06:32',1990,'jinghao.sun','2018-11-04 13:25:59',1990,'jinghao.sun',1),
-(473,1,'重置密码','117',6,4,0,'133C9CB27E18','','','','ajax_btn_password_reset.do','userInfo/ajax_btn_password_reset.do','10003','system_user_list:password_reset','2018-11-14 16:28:31',1992,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
-(479,1,'分布式定时任务','78',5,2,0,'133C9CB27E18','editor','4930eab924ee4e10ad016882bb7772a3','','','分布式定时任务','','','2018-12-20 17:42:07',1992,'Yangcl','2018-12-20 17:42:07',1992,'Yangcl',1),
-(480,1,'定时任务列表','479',1,3,0,'133C9CB27E18','','','quartz/page_quartz_job_info_list.do','','定时任务列表','','','2018-12-20 17:43:15',1992,'Yangcl','2018-12-20 17:43:15',1992,'Yangcl',1),
-(481,1,'添加','480',1,4,0,'133C9CB27E18','','','','ajax_btn_job_info_add.do','quartz/ajax_btn_job_info_add.do','10001','job_info_list:add','2018-12-20 17:59:41',1992,'Yangcl','2021-04-19 17:41:18',2,'Yangcl',1),
-(482,1,'重 置','480',2,4,0,'133C9CB27E18','','','','','job_info_list:reset','10001','job_info_list:reset','2018-12-20 18:00:39',1992,'Yangcl','2018-12-20 18:00:39',1992,'Yangcl',1),
-(483,1,'查 询','480',3,4,0,'133C9CB27E18','','','','','job_info_list:search','10001','job_info_list:search','2018-12-20 18:01:34',1992,'Yangcl','2018-12-20 18:01:34',1992,'Yangcl',1),
-(484,1,'删除','480',4,4,0,'133C9CB27E18','','','','ajax_btn_job_info_delete.do','quartz/ajax_btn_job_info_delete.do','10003','job_info_list:delete','2018-12-20 20:48:17',1992,'Yangcl','2021-04-20 11:22:18',2,'Yangcl',1),
-(485,1,'修改','480',5,4,0,'133C9CB27E18','','','','ajax_btn_job_info_edit.do','quartz/ajax_btn_job_info_edit.do','10003','job_info_list:edit','2018-12-20 20:48:46',1992,'Yangcl','2021-04-19 18:02:29',2,'Yangcl',1),
-(486,1,'手动触发','480',6,4,0,'133C9CB27E18','','','','','job_info_list:run','10003','job_info_list:run','2018-12-20 20:49:11',1992,'Yangcl','2018-12-20 21:00:13',1992,'Yangcl',1),
-(487,1,'执行记录','480',7,4,0,'133C9CB27E18','','','','','job_info_list:run_log','10003','job_info_list:run_log','2018-12-20 20:59:48',1992,'Yangcl','2018-12-20 20:59:48',1992,'Yangcl',1),
-(488,1,'暂停','480',8,4,0,'133C9CB27E18','','','','','暂停一个定时任务','10003','job_info_list:pause','2018-12-21 14:22:49',1992,'Yangcl','2018-12-21 14:22:49',1992,'Yangcl',1),
-(489,1,'全部暂停','480',9,4,0,'133C9CB27E18','','','','','暂停全部定时任务','10002','job_info_list:pause_all','2018-12-21 14:24:33',1992,'Yangcl','2018-12-21 14:24:33',1992,'Yangcl',1),
-(490,1,'恢复','480',10,4,0,'133C9CB27E18','','','','','恢复一个指定的定时任务到运行状态','10003','job_info_list:resume','2018-12-21 14:25:52',1992,'Yangcl','2018-12-21 14:25:52',1992,'Yangcl',1),
-(491,1,'全部恢复','480',11,4,0,'133C9CB27E18','','','','','将全部定时任务恢复到运行状态','10002','job_info_list:resume_all','2018-12-21 14:26:59',1992,'Yangcl','2018-12-21 14:26:59',1992,'Yangcl',1),
-(492,1,'详情','480',12,4,0,'133C9CB27E18','','','','','定时任务详情','10003','job_info_list:detail','2018-12-25 14:21:25',1992,'Yangcl','2018-12-25 14:21:25',1992,'Yangcl',1),
-(493,1,'定时任务分组列表','479',2,3,0,'133C9CB27E18','','','quartz/page_quartz_job_group_list.do','','定时任务分组列表：views/quartz/group/job-group-list','','','2018-12-27 10:57:42',1992,'Yangcl','2021-04-28 17:05:03',2,'Yangcl',1),
-(494,1,'添加','493',1,4,0,'133C9CB27E18','','','','ajax_btn_job_group_add.do','quartz/ajax_btn_job_group_add.do','10001','job_group_list:add','2018-12-27 10:59:42',1992,'Yangcl','2021-04-28 17:42:04',2,'Yangcl',1),
-(495,1,'重 置','493',2,4,0,'133C9CB27E18','','','','','job_group_list:reset','10001','job_group_list:reset','2018-12-27 11:00:05',1992,'Yangcl','2018-12-27 11:00:05',1992,'Yangcl',1),
-(496,1,'查 询','493',3,4,0,'133C9CB27E18','','','','','job_group_list:search','10001','job_group_list:search','2018-12-27 11:00:27',1992,'Yangcl','2018-12-27 11:00:27',1992,'Yangcl',1),
-(497,1,'删除','493',4,4,0,'133C9CB27E18','','','','ajax_btn_job_group_delete.do','quartz/ajax_btn_job_group_delete.do','10003','job_group_list:delete','2018-12-27 11:00:49',1992,'Yangcl','2021-05-06 15:13:48',2,'Yangcl',1),
-(498,1,'修改','493',5,4,0,'133C9CB27E18','','','','ajax_btn_job_group_edit.do','quartz/ajax_btn_job_group_edit.do','10003','job_group_list:edit','2018-12-27 11:01:14',1992,'Yangcl','2021-05-06 15:13:19',2,'Yangcl',1),
-(499,1,'定时任务日志列表','479',3,3,0,'133C9CB27E18','','','quartz/page_quartz_job_log_list.do','','定时任务日志列表','','','2018-12-29 17:00:37',1992,'Yangcl','2018-12-29 17:00:37',1992,'Yangcl',1),
-(510,1,'部署节点列表','465',2,3,0,'133C9CB27E18','','','route/page_route_dubbo_node_list.do','','Dubbo应用服务部署节点列表','','','2019-01-07 14:15:06',1992,'Yangcl','2019-01-07 14:15:06',1992,'Yangcl',1),
-(600,1,'sentinel控制台','465',3,3,0,'133C9CB27E18','','','application/page_goto_sentinel_dashboard.do','','','','','2019-06-13 16:35:50',1994,'wanghao','2019-06-13 16:35:50',1994,'wanghao',1),
+(1,1,'root：系统功能树','-1',1,-1,0,'','root','root','rool','','系统根节点','',NULL,'2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(75,1,'Leader','1',1,0,0,'133C9CB27E18','','','','','Leader底层管理系统','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(77,1,'开发示例','75',2,1,0,'133C9CB27E18','','','','','为系统开发这提供的示例','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(78,1,'矩阵系统配置','75',3,1,0,'133C9CB27E18','','','','','系统核心功能管理与控制','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-26 17:43:08',2,'Yangcl',1),
+(79,1,'开发者快速入门','77',2,2,0,'133C9CB27E18','editor','37c694131c304c2588c4b906567631b1','','','开发者快速入门','','','2018-07-28 16:42:40',2,'Yangcl','2020-01-10 15:57:23',2,'Yangcl',1),
+(80,1,'实例样本','77',3,2,0,'133C9CB27E18','editor','0cf9aa57b07149d586cc8998af6cfe7d','','','实例样本','','','2018-07-28 16:42:40',2,'Yangcl','2020-01-10 15:57:23',2,'Yangcl',1),
+(81,1,'系统用户相关','78',1,2,0,'133C9CB27E18','editor','b06962367f8640fcbf11d4bca147101b','','','系统用户相关','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(83,1,'添加信息示例','79',1,3,0,'133C9CB27E18','','','example/page_example_add_info.do','','添加信息示例|matrix-admin/jsp/example/addExample.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2020-01-10 16:25:16',2,'Yangcl',1),
+(84,1,'实际样本-A','80',1,3,0,'133C9CB27E18','','','example/page_example_a.do','','matrix-admin/src/main/webapp/jsp/example/reality/questionQuery.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(117,1,'系统用户列表','81',1,3,0,'133C9CB27E18','','','permissions/page_permissions_system_user_list.do','','leader/src/main/webapp/views/permission/user/system-user-list.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:51:18',2,'Yangcl',1),
+(118,1,'系统角色列表','81',2,3,0,'133C9CB27E18','','','permissions/page_permissions_system_role_list.do','','leader/src/main/webapp/views/permission/role/system-role-list.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:50:20',2,'Yangcl',1),
+(119,1,'系统功能列表','81',3,3,0,'133C9CB27E18','','','permissions/page_permissions_system_function.do','','leader/src/main/webapp/views/permission/func/system-func-tree.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:50:57',2,'Yangcl',1),
+(126,1,'Ajax 分页示例','79',2,3,0,'133C9CB27E18','','','example/page_example_ajax_form.do','','Ajax 分页示例|matrix-admin/jsp/example/ajaxFormExample.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(127,1,'Ajax 分页+弹出窗体分页 示例','79',3,3,0,'133C9CB27E18','','','example/page_example_ajax_form_dialog.do','','Ajax 分页+弹出窗体分页 示例|\r\nmatrix-admin/jsp/example/ajaxFormDialogExample.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(128,1,'实际样本-B','80',2,3,0,'133C9CB27E18','','','example/page_example_b.do','','matrix-admin/src/main/webapp/jsp/example/reality/validate.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(167,1,'添加','83',1,4,0,'133C9CB27E18','','','','ajax_btn_add_info','123123','10001','add_info_example:add','2018-07-28 16:42:40',2,'Yangcl','2020-01-10 16:11:19',2,'Yangcl',1),
+(171,1,'查询','126',1,4,0,'133C9CB27E18','','','','','查询','10002','ajax_page_example:search','2018-07-28 16:42:40',2,'Yangcl','2019-12-05 15:39:59',2,'Yangcl',1),
+(172,1,'查询','127',2,4,0,'133C9CB27E18','','','','','添加','10002','ajax_page_dialog_example:search','2018-07-28 16:42:40',2,'Yangcl','2019-11-01 15:21:17',2,'Yangcl',1),
+(177,1,'添加','118',3,4,0,'133C9CB27E18','','','','ajax_btn_add_mc_role_only.do','sysrole/ajax_btn_add_mc_role_only.do','10001','system_role_list:add','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:00:38',2,'Yangcl',1),
+(187,1,'删除','126',3,4,0,'133C9CB27E18','','','','','删除','10003','ajax_page_example:delete','2018-07-28 16:42:40',2,'Yangcl','2019-11-08 15:58:28',2,'Yangcl',1),
+(188,1,'修改','127',5,5,0,'133C9CB27E18','','','asdfasdf','','修改','10003','ajax_page_dialog_example:edit','2018-07-28 16:42:40',2,'Yangcl','2019-11-01 15:21:17',2,'Yangcl',1),
+(192,1,'重置','126',2,4,0,'133C9CB27E18','','','','','重置','10002','ajax_page_example:reset','2018-07-28 16:42:40',2,'Yangcl','2019-11-08 15:58:28',2,'Yangcl',1),
+(193,1,'重置','127',4,4,0,'133C9CB27E18','','','','','查看','10002','ajax_page_dialog_example:reset','2018-07-28 16:42:40',2,'Yangcl','2019-11-01 15:21:17',2,'Yangcl',1),
+(197,1,'查询','117',1,4,0,'133C9CB27E18','','','','ajax_system_user_list.do','userInfo/ajax_system_user_list.do','10001','system_user_list:search','2018-07-28 16:42:40',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(198,1,'查询','118',1,4,0,'133C9CB27E18','','','','ajax_system_role_list.do','sysrole/ajax_system_role_list.do','10001','system_role_list:search','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 13:59:35',2,'Yangcl',1),
+(208,1,'修改','126',4,4,0,'133C9CB27E18','','','','','修改','10003','ajax_page_example:edit','2018-07-28 16:42:40',2,'Yangcl','2019-11-08 15:58:28',2,'Yangcl',1),
+(209,1,'自定义 alert confirm note 示例','79',4,3,0,'133C9CB27E18','','','example/page_example_alert.do','','自定义 alert confirm note 示例|matrix-admin/jsp/example/alertExample.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(210,1,'基本 Alert','209',1,4,0,'133C9CB27E18','','','','','基本 Alert','10001','custom_dialog_example:alert','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(211,1,'确认对话框 confirm','209',2,4,0,'133C9CB27E18','','','','','确认对话框 confirm','10001','custom_dialog_example:confirm','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(212,1,'输入对话框 prompt','209',3,4,0,'133C9CB27E18','','','','','输入对话框 prompt','10001','custom_dialog_example:prompt','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(213,1,'alert 支持html标签','209',4,4,0,'133C9CB27E18','','','','','alert 支持html标签','10001','custom_dialog_example:html','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(214,1,'弹出层示例','79',5,3,0,'133C9CB27E18','','','example/page_example_block_ui.do','','介绍系统常见的弹出层|matrix-admin/jsp/example/blockUiPageExample.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(215,1,'添加弹层示例','214',1,4,0,'133C9CB27E18','','','','','开头语','10001','dialog_example:add','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(227,1,'ueditor编辑器示例','80',4,3,0,'133C9CB27E18','','','example/page_example_ueditor.do','','matrix-admin/src/main/webapp/jsp/example/ueditorExample.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(249,1,'图片|文件上传','80',5,3,0,'133C9CB27E18','','','example/page_example_file_upload.do','','matrix-admin/src/main/webapp/jsp/example/pageExampleFileUpload.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(250,1,'项目介绍','77',1,2,0,'133C9CB27E18','editor','304180247f1044f6a9a56a78a407fdc3','','','项目介绍','','','2018-07-28 16:42:40',2,'Yangcl','2020-01-10 15:57:23',2,'Yangcl',1),
+(251,1,'开发者规约-java','250',1,3,0,'133C9CB27E18','','','example/page_developer_specification.do','','开发者规约','','','2018-07-28 16:42:40',2,'Yangcl','2019-11-08 10:53:42',2,'Yangcl',1),
+(252,1,'开发者规约-javascript','250',2,3,0,'133C9CB27E18','','','example/page_developer_specification_js.do','','开发者规约-javascript','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 11:33:25',2,'Yangcl',1),
+(253,1,'系统工具','78',2,2,0,'133C9CB27E18','editor','a6a534ca38384f8787a8306ea0f23651','','','系统配置与查询、缓存操作/查看、部署节点列表等','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-23 10:50:07',2,'Yangcl',1),
+(254,1,'缓存查看','253',1,3,0,'133C9CB27E18','','','cache/page_cache_system_cache.do','','查看系统中的缓存信息|views\\system\\cache\\system-cache.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-23 14:46:35',2,'Yangcl',1),
+(255,1,'缓存重置','253',2,3,0,'133C9CB27E18','','','cache/page_cache_reload.do','','缓存重置，用户的、字典的、其他的|/matrix-admin/jsp/syssetting/cache/cacheReload.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-23 11:11:32',2,'Yangcl',1),
+(257,1,'删除','127',7,4,0,'133C9CB27E18','','','','','删除','10003','ajax_page_dialog_example:delete','2018-07-28 16:42:40',2,'Yangcl','2019-11-01 15:21:17',2,'Yangcl',1),
+(258,1,'弹窗分页','127',6,4,0,'133C9CB27E18','','','','','弹窗分页','10003','ajax_page_dialog_example:dialog','2018-07-28 16:42:40',2,'Yangcl','2019-11-01 15:21:17',2,'Yangcl',1),
+(259,1,'自定义滚动条示例-ul-列表','214',2,4,0,'133C9CB27E18','','','','','自定义滚动条示例-ul-列表','10001','dialog_example:slim_scroll','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(260,1,'自定义滚动条示例-tree','214',3,4,0,'133C9CB27E18','','','','','自定义滚动条示例-tree','10001','dialog_example:slim_scroll:tree','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(261,1,'搜索日志信息','84',1,4,0,'133C9CB27E18','','','','','搜索日志信息','10001','btn-55ee0a123a05484d8cc22235b709c2ff','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(287,1,'系统开放接口','78',3,2,0,'133C9CB27E18','editor','d27673e123c9447f8c789ab260b3adb2','','','包含公司内部接口、开放给第三方的接口等。由这里进行统一管理','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(288,1,'api所属项目','287',1,3,0,'133C9CB27E18','','','apicenter/page_apicenter_api_project_list.do','','api所属项目-应对可能出现的多项目|ac_api_project表的数据|\r\nviews\\api\\project\\api-project-list.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-26 17:28:04',2,'Yangcl',1),
+(289,1,'查 询','288',1,4,0,'133C9CB27E18','','','','ajax_api_project_list.do','apicenter/ajax_api_project_list.do\r\n查 询','10002','api_project_list:search','2018-07-28 16:42:40',2,'Yangcl','2019-12-27 13:50:12',2,'Yangcl',1),
+(290,1,'重 置','288',2,4,0,'133C9CB27E18','','','','ajax_api_project_list.do','apicenter/ajax_api_project_list.do\r\n重 置','10002','api_project_list:reset','2018-07-28 16:42:40',2,'Yangcl','2019-12-27 13:50:41',2,'Yangcl',1),
+(291,1,'添加','288',3,4,0,'133C9CB27E18','','','','ajax_btn_api_project_add.do','添加 apicenter/ajax_btn_api_project_add.do','10001','api_project_list:add','2018-07-28 16:42:40',2,'Yangcl','2019-12-27 13:51:37',2,'Yangcl',1),
+(292,1,'删除','288',4,4,0,'133C9CB27E18','','','','ajax_btn_api_project_delete.do','删除 apicenter/ajax_btn_api_project_delete.do','10003','api_project_list:delete','2018-07-28 16:42:40',2,'Yangcl','2019-12-27 13:53:05',2,'Yangcl',1),
+(293,1,'修改','288',5,4,0,'133C9CB27E18','','','','ajax_btn_api_project_edit.do','修改 apicenter/ajax_btn_api_project_edit.do','10003','api_project_list:edit','2018-07-28 16:42:40',2,'Yangcl','2019-12-27 13:52:09',2,'Yangcl',1),
+(294,1,'跨域白名单','287',2,3,0,'133C9CB27E18','','','apicenter/page_apicenter_include_domain_list.do','','记录系统允许跨域的域名|\r\nviews\\api\\domain\\api-include-domain-list.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2019-12-27 17:30:29',2,'Yangcl',1),
+(295,1,'查询','294',1,4,0,'133C9CB27E18','','','','ajax_include_domain_page_list.do','查询','10002','include_domain_list:search','2018-07-28 16:42:40',2,'Yangcl','2021-03-15 16:13:19',2,'Yangcl',1),
+(296,1,'重置','294',2,4,0,'133C9CB27E18','','','','ajax_include_domain_page_list.do','重置','10002','include_domain_list:reset','2018-07-28 16:42:40',2,'Yangcl','2021-03-15 16:13:31',2,'Yangcl',1),
+(297,1,'添加','294',3,4,0,'133C9CB27E18','','','','ajax_btn_api_domain_add.do','添加 apicenter/ajax_btn_api_domain_add.do','10001','include_domain_list:add','2018-07-28 16:42:40',2,'Yangcl','2019-12-27 17:31:21',2,'Yangcl',1),
+(298,1,'删除','294',4,4,0,'133C9CB27E18','','','','ajax_btn_api_domain_delete.do','删除 apicenter/ajax_btn_api_domain_delete.do','10001','include_domain_list:delete','2018-07-28 16:42:40',2,'Yangcl','2020-01-07 11:21:39',2,'Yangcl',1),
+(299,1,'修改','294',5,4,0,'133C9CB27E18','','','','ajax_btn_api_domain_edit.do','修改 apicenter/ajax_btn_api_domain_edit.do','10001','include_domain_list:edit','2018-07-28 16:42:40',2,'Yangcl','2020-01-07 09:55:22',2,'Yangcl',1),
+(300,1,'api信息树','287',3,3,0,'133C9CB27E18','','','apicenter/page_apicenter_api_tree.do','','api信息树|views\\api\\info\\api-tree.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2020-01-07 16:32:06',2,'Yangcl',1),
+(301,1,'请求者信息','287',4,3,0,'133C9CB27E18','','','apicenter/page_apicenter_request_info.do','','请求者信息维护页面|\r\nmatrix-admin/src/main/webapp/jsp/api/request/api-request-info-list.jsp','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(302,1,'查 询','301',1,4,0,'133C9CB27E18','','','','ajax_request_info_list.do','查 询 apicenter/ajax_request_info_list.do','10002','api_requester_info:search','2018-07-28 16:42:40',2,'Yangcl','2021-03-21 18:00:01',2,'Yangcl',1),
+(303,1,'重 置','301',2,4,0,'133C9CB27E18','','','','ajax_request_info_list.do','重 置 apicenter/ajax_request_info_list.do','10002','api_requester_info:reset','2018-07-28 16:42:40',2,'Yangcl','2021-03-21 18:00:06',2,'Yangcl',1),
+(304,1,'添加','301',3,4,0,'133C9CB27E18','','','','','添加','10001','api_requester_info:add','2018-07-28 16:42:40',2,'Yangcl','2020-01-07 16:38:40',2,'Yangcl',1),
+(305,1,'启用|禁用','301',4,4,0,'133C9CB27E18','','','','','删除','10003','api_requester_info:delete','2018-07-28 16:42:40',2,'Yangcl','2020-01-07 16:38:40',2,'Yangcl',1),
+(306,1,'修改','301',5,4,0,'133C9CB27E18','','','','','修改','10003','api_requester_info:edit','2018-07-28 16:42:40',2,'Yangcl','2020-01-07 16:38:40',2,'Yangcl',1),
+(308,1,'删除','83',2,4,0,'133C9CB27E18','','','','ajax_btn_delete_info','删除按钮','10001','add_info_example:delete','2018-07-28 16:42:40',2,'Yangcl','2019-12-10 15:38:52',2,'Yangcl',1),
+(309,1,'弹窗-删除','127',1,4,0,'133C9CB27E18','','','','','弹窗中的删除按钮','10001','ajax_page_dialog_example:dialog:delete','2018-07-28 16:42:40',2,'Yangcl','2019-11-01 15:21:17',2,'Yangcl',1),
+(310,1,'弹窗-编辑','127',3,4,0,'133C9CB27E18','','','','','弹窗中的编辑按钮','10001','ajax_page_dialog_example:dialog:edit','2018-07-28 16:42:40',2,'Yangcl','2019-11-01 15:21:17',2,'Yangcl',1),
+(312,1,'重置','117',2,4,0,'133C9CB27E18','','','','ajax_system_user_list.do','userInfo/ajax_system_user_list.do','10002','system_user_list:reset','2018-07-28 16:42:40',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(313,1,'添加','117',3,4,0,'133C9CB27E18','','','','ajax_btn_add_system_user.do','userInfo/ajax_btn_add_system_user.do','10002','system_user_list:add','2018-07-28 16:42:40',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(314,1,'删除','117',4,4,0,'133C9CB27E18','','','','ajax_btn_delete_system_user.do','userInfo/ajax_btn_delete_system_user.do','10003','system_user_list:delete','2018-07-28 16:42:40',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(315,1,'修改','117',5,4,0,'133C9CB27E18','','','','ajax_btn_edit_sys_user.do','userInfo/ajax_btn_edit_sys_user.do','10003','system_user_list:edit','2018-07-28 16:42:40',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(316,1,'用户角色','117',7,5,0,'133C9CB27E18','','','dialog_permissions_system_role_list.do','','permissions/dialog_permissions_system_role_list.do','10001','system_user_list:user_role','2018-07-28 16:42:40',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(317,1,'系统角色列表-弹框-分配','117',11,4,0,'133C9CB27E18','','','','ajax_btn_allot_user_role_submit.do','sysrole/ajax_btn_allot_user_role_submit.do\r\n给指定用户分配一个角色','10003','system_user_list:allot_submit','2018-07-28 16:42:40',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(318,1,'重置','118',2,4,0,'133C9CB27E18','','','','ajax_system_role_list.do','sysrole/ajax_system_role_list.do','10001','system_role_list:reset','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 13:59:55',2,'Yangcl',1),
+(319,1,'角色功能','118',4,4,0,'133C9CB27E18','','','','default','default：仅做权限控制，不发起ajax请求','10001','system_role_list:role_function','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:09:52',2,'Yangcl',1),
+(320,1,'修改','118',5,4,0,'133C9CB27E18','','','','ajax_btn_edit_mc_role_only.do','sysrole/ajax_btn_edit_mc_role_only.do','10001','system_role_list:edit','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:01:17',2,'Yangcl',1),
+(321,1,'删除','118',6,4,0,'133C9CB27E18','','','','ajax_btn_delete_mc_role.do','sysrole/ajax_btn_delete_mc_role.do','10001','system_role_list:delete','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:01:41',2,'Yangcl',1),
+(322,1,'角色功能弹窗-提交','118',7,4,0,'133C9CB27E18','','','','ajax_btn_edit_mc_role.do','sysrole/ajax_btn_edit_mc_role.do','10001','system_role_list:dialog_submit','2018-07-28 16:42:40',2,'Yangcl','2019-12-11 14:13:08',2,'Yangcl',1),
+(323,1,'保存|修改','300',1,4,0,'133C9CB27E18','','','','default','保存|修改。页面展示为【保存】按钮，但针对添加行为对应apicenter/ajax_api_info_add.do，针对修改行为对应apicenter/ajax_api_info_edit.do。由于同一个按钮对应两种Controller请求路径，所以【按钮请求路径】初设置为default','10001','api_tree:submit','2018-07-28 16:42:40',2,'Yangcl','2020-01-07 16:53:39',2,'Yangcl',1),
+(325,1,'完整开发流程','77',4,2,0,'133C9CB27E18','editor','51e91e7ba11d4a61918d100dd124d9f0','','','贴近实际业务来展示一个完整的开发流程','','','2018-07-28 16:42:40',2,'Yangcl','2020-01-10 15:57:23',2,'Yangcl',1),
+(326,1,'楼盘信息开发实例','325',1,3,0,'133C9CB27E18','','','demos/page_demo_landed_property.do','','复制即所得，抄永远比写来的快。但请小心别抄错了。。','','','2018-07-28 16:42:40',2,'Yangcl','2018-07-28 16:42:44',2,'Yangcl',1),
+(465,1,'dubbo-admin','78',4,2,0,'133C9CB27E18','editor','17f2b7b4b60f455e8fdcbb3a6e37fe4b','','','','','','2018-11-04 13:02:19',2,'Yangcl','2018-11-04 13:02:19',2,'Yangcl',1),
+(466,1,'Dubbo应用服务列表','465',1,3,0,'133C9CB27E18','','','application/page_application_dubbo_project_list.do','',' @description: Dubbo应用服务列表|Dubbo项目名称列表','','','2018-11-04 13:06:32',2,'Yangcl','2018-11-04 13:25:59',2,'Yangcl',1),
+(473,1,'重置密码','117',6,4,0,'133C9CB27E18','','','','ajax_btn_password_reset.do','userInfo/ajax_btn_password_reset.do','10003','system_user_list:password_reset','2018-11-14 16:28:31',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
+(479,1,'分布式定时任务','78',5,2,0,'133C9CB27E18','editor','4930eab924ee4e10ad016882bb7772a3','','','分布式定时任务','','','2018-12-20 17:42:07',2,'Yangcl','2018-12-20 17:42:07',2,'Yangcl',1),
+(480,1,'定时任务列表','479',1,3,0,'133C9CB27E18','','','quartz/page_quartz_job_info_list.do','','定时任务列表','','','2018-12-20 17:43:15',2,'Yangcl','2018-12-20 17:43:15',2,'Yangcl',1),
+(481,1,'添加','480',1,4,0,'133C9CB27E18','','','','ajax_btn_job_info_add.do','quartz/ajax_btn_job_info_add.do','10001','job_info_list:add','2018-12-20 17:59:41',2,'Yangcl','2021-04-19 17:41:18',2,'Yangcl',1),
+(482,1,'重 置','480',2,4,0,'133C9CB27E18','','','','','job_info_list:reset','10001','job_info_list:reset','2018-12-20 18:00:39',2,'Yangcl','2018-12-20 18:00:39',2,'Yangcl',1),
+(483,1,'查 询','480',3,4,0,'133C9CB27E18','','','','','job_info_list:search','10001','job_info_list:search','2018-12-20 18:01:34',2,'Yangcl','2018-12-20 18:01:34',2,'Yangcl',1),
+(484,1,'删除','480',4,4,0,'133C9CB27E18','','','','ajax_btn_job_info_delete.do','quartz/ajax_btn_job_info_delete.do','10003','job_info_list:delete','2018-12-20 20:48:17',2,'Yangcl','2021-04-20 11:22:18',2,'Yangcl',1),
+(485,1,'修改','480',5,4,0,'133C9CB27E18','','','','ajax_btn_job_info_edit.do','quartz/ajax_btn_job_info_edit.do','10003','job_info_list:edit','2018-12-20 20:48:46',2,'Yangcl','2021-04-19 18:02:29',2,'Yangcl',1),
+(486,1,'手动触发','480',6,4,0,'133C9CB27E18','','','','','job_info_list:run','10003','job_info_list:run','2018-12-20 20:49:11',2,'Yangcl','2018-12-20 21:00:13',2,'Yangcl',1),
+(487,1,'执行记录','480',7,4,0,'133C9CB27E18','','','','','job_info_list:run_log','10003','job_info_list:run_log','2018-12-20 20:59:48',2,'Yangcl','2018-12-20 20:59:48',2,'Yangcl',1),
+(488,1,'暂停','480',8,4,0,'133C9CB27E18','','','','','暂停一个定时任务','10003','job_info_list:pause','2018-12-21 14:22:49',2,'Yangcl','2018-12-21 14:22:49',2,'Yangcl',1),
+(489,1,'全部暂停','480',9,4,0,'133C9CB27E18','','','','','暂停全部定时任务','10002','job_info_list:pause_all','2018-12-21 14:24:33',2,'Yangcl','2018-12-21 14:24:33',2,'Yangcl',1),
+(490,1,'恢复','480',10,4,0,'133C9CB27E18','','','','','恢复一个指定的定时任务到运行状态','10003','job_info_list:resume','2018-12-21 14:25:52',2,'Yangcl','2018-12-21 14:25:52',2,'Yangcl',1),
+(491,1,'全部恢复','480',11,4,0,'133C9CB27E18','','','','','将全部定时任务恢复到运行状态','10002','job_info_list:resume_all','2018-12-21 14:26:59',2,'Yangcl','2018-12-21 14:26:59',2,'Yangcl',1),
+(492,1,'详情','480',12,4,0,'133C9CB27E18','','','','','定时任务详情','10003','job_info_list:detail','2018-12-25 14:21:25',2,'Yangcl','2018-12-25 14:21:25',2,'Yangcl',1),
+(493,1,'定时任务分组列表','479',2,3,0,'133C9CB27E18','','','quartz/page_quartz_job_group_list.do','','定时任务分组列表：views/quartz/group/job-group-list','','','2018-12-27 10:57:42',2,'Yangcl','2021-04-28 17:05:03',2,'Yangcl',1),
+(494,1,'添加','493',1,4,0,'133C9CB27E18','','','','ajax_btn_job_group_add.do','quartz/ajax_btn_job_group_add.do','10001','job_group_list:add','2018-12-27 10:59:42',2,'Yangcl','2021-04-28 17:42:04',2,'Yangcl',1),
+(495,1,'重 置','493',2,4,0,'133C9CB27E18','','','','','job_group_list:reset','10001','job_group_list:reset','2018-12-27 11:00:05',2,'Yangcl','2018-12-27 11:00:05',2,'Yangcl',1),
+(496,1,'查 询','493',3,4,0,'133C9CB27E18','','','','','job_group_list:search','10001','job_group_list:search','2018-12-27 11:00:27',2,'Yangcl','2018-12-27 11:00:27',2,'Yangcl',1),
+(497,1,'删除','493',4,4,0,'133C9CB27E18','','','','ajax_btn_job_group_delete.do','quartz/ajax_btn_job_group_delete.do','10003','job_group_list:delete','2018-12-27 11:00:49',2,'Yangcl','2021-05-06 15:13:48',2,'Yangcl',1),
+(498,1,'修改','493',5,4,0,'133C9CB27E18','','','','ajax_btn_job_group_edit.do','quartz/ajax_btn_job_group_edit.do','10003','job_group_list:edit','2018-12-27 11:01:14',2,'Yangcl','2021-05-06 15:13:19',2,'Yangcl',1),
+(499,1,'定时任务日志列表','479',3,3,0,'133C9CB27E18','','','quartz/page_quartz_job_log_list.do','','定时任务日志列表','','','2018-12-29 17:00:37',2,'Yangcl','2018-12-29 17:00:37',2,'Yangcl',1),
+(510,1,'部署节点列表','465',2,3,0,'133C9CB27E18','','','route/page_route_dubbo_node_list.do','','Dubbo应用服务部署节点列表','','','2019-01-07 14:15:06',2,'Yangcl','2019-01-07 14:15:06',2,'Yangcl',1),
+(600,1,'sentinel控制台','465',3,3,0,'133C9CB27E18','','','application/page_goto_sentinel_dashboard.do','','','','','2019-06-13 16:35:50',2,'Yangcl','2019-06-13 16:35:50',2,'Yangcl',1),
 (1060,1,'手动','480',13,4,0,'133C9CB27E18','','','','','手动触发定时任务|立刻执行定时任务','10003','job_info_list:handling','2019-09-27 18:12:50',2,'Yangcl','2019-09-27 18:12:50',2,'Yangcl',1),
 (1071,1,'权限重置','117',8,4,0,'133C9CB27E18','','','','ajax_btn_user_cache_reload.do','sysrole/ajax_btn_user_cache_reload.do\r\n重置系统用户的所有信息包括：McSysFunc、McRole、McUserRole、UserInfoNp','10001','system_user_list:reload','2019-12-10 15:59:17',2,'Yangcl','2019-12-17 17:51:12',2,'Yangcl',1),
 (1072,1,'角色功能弹窗-解绑','118',8,4,0,'133C9CB27E18','','','','ajax_btn_relieve_mc_role.do','sysrole/ajax_btn_relieve_mc_role.do','10001','system_role_list:dialog_cancel','2019-12-11 14:12:31',2,'Yangcl','2019-12-11 14:55:07',2,'Yangcl',1),
@@ -730,7 +740,22 @@ insert  into `mc_sys_function`(`id`,`mc_seller_company_id`,`name`,`parent_id`,`s
 (1082,1,'删除','300',2,4,0,'133C9CB27E18','','','','ajax_btn_api_remove.do','删除一个api节点 apicenter/ajax_btn_api_remove.do','10001','api_tree:remove','2020-01-07 18:12:43',2,'Yangcl','2020-01-07 18:12:43',2,'Yangcl',1),
 (1084,1,'查 询','499',1,4,0,'133C9CB27E18','','','','ajax_job_log_list.do','quartz/ajax_job_log_list','10001','job_log_list:search','2021-05-06 18:07:53',2,'Yangcl','2021-05-06 18:07:53',2,'Yangcl',1),
 (1085,1,'重 置','499',2,4,0,'133C9CB27E18','','','','ajax_job_log_list.do','quartz/ajax_job_log_list','10001','job_log_list:reset','2021-05-06 18:09:09',2,'Yangcl','2021-05-06 18:09:09',2,'Yangcl',1),
-(1086,1,'详情','499',3,4,0,'133C9CB27E18','','','','ajax_job_log_detail.do','quartz/ajax_job_log_detail.do','10001','job_log_list:detail','2021-05-06 18:10:44',2,'Yangcl','2021-05-06 18:10:44',2,'Yangcl',1);
+(1086,1,'详情','499',3,4,0,'133C9CB27E18','','','','ajax_job_log_detail.do','quartz/ajax_job_log_detail.do','10001','job_log_list:detail','2021-05-06 18:10:44',2,'Yangcl','2021-05-06 18:10:44',2,'Yangcl',1),
+(1087,1,'ceshi-project-node','1',2,0,0,'134641C1B16A','','','','','2','','','2021-07-16 11:09:54',2,'Yangcl','2021-07-16 11:09:54',2,'Yangcl',1),
+(1090,1,'导航栏1','1087',1,1,0,'134641C1B16A','','','','','导航栏1','','','2021-07-16 11:17:52',2,'Yangcl','2021-07-16 11:17:52',2,'Yangcl',1),
+(1091,1,'导航栏2','1087',2,1,0,'134641C1B16A','','','','','导航栏2','','','2021-07-16 11:18:04',2,'Yangcl','2021-07-16 11:18:04',2,'Yangcl',1),
+(1092,1,'一级菜单名称1','1090',1,2,0,'134641C1B16A','editor','','','','一级菜单名称1','','','2021-07-16 11:20:00',2,'Yangcl','2021-07-16 11:20:00',2,'Yangcl',1),
+(1093,1,'一级菜单名称2','1090',2,2,0,'134641C1B16A','editor','','','','一级菜单名称2','','','2021-07-16 11:20:09',2,'Yangcl','2021-07-16 11:20:09',2,'Yangcl',1),
+(1094,1,'一级菜单名称3','1091',2,2,0,'134641C1B16A','editor','','','','一级菜单名称3','','','2021-07-16 11:20:19',2,'Yangcl','2021-07-16 16:55:09',2,'Yangcl',1),
+(1095,1,'一级菜单名称4','1091',1,2,0,'134641C1B16A','editor','','','','一级菜单名称4','','','2021-07-16 11:20:27',2,'Yangcl','2021-07-16 16:55:09',2,'Yangcl',1),
+(1096,1,'二级菜单名称1','1092',1,3,0,'134641C1B16A','','','aaaa','','二级菜单名称1','','','2021-07-16 11:21:15',2,'Yangcl','2021-07-16 11:21:15',2,'Yangcl',1),
+(1097,1,'二级菜单名称2','1092',2,3,0,'134641C1B16A','','','aaaa','','二级菜单名称','','','2021-07-16 11:21:27',2,'Yangcl','2021-07-16 11:21:27',2,'Yangcl',1),
+(1098,1,'二级菜单名称3','1093',1,3,0,'134641C1B16A','','','aaaa','','二级菜单名称3','','','2021-07-16 11:21:38',2,'Yangcl','2021-07-16 11:21:38',2,'Yangcl',1),
+(1099,1,'二级菜单名称4','1093',2,3,0,'134641C1B16A','','','aaaa','','二级菜单名称4','','','2021-07-16 11:21:48',2,'Yangcl','2021-07-16 11:21:48',2,'Yangcl',1),
+(1106,1,'页面按钮名称7','1097',1,4,0,'134641C1B16A','','','','页面按钮名称','页面按钮名称','10001','页面按钮名称','2021-07-16 11:25:12',2,'Yangcl','2021-07-16 11:25:12',2,'Yangcl',1),
+(1112,1,'2222','1098',1,4,0,'134641C1B16A','','','','2222','2222','10001','2222','2021-07-16 16:27:11',2,'Yangcl','2021-07-16 16:27:11',2,'Yangcl',1),
+(1113,1,'页面按钮名称1','1096',1,4,0,'134641C1B16A','','','','页面按钮名称','页面按钮名称','10001','页面按钮名称','2021-07-16 16:30:23',2,'Yangcl','2021-07-16 16:55:04',2,'Yangcl',1),
+(1114,1,'页面按钮名称2','1096',2,4,0,'134641C1B16A','','','','页面按钮名称2','页面按钮名称2','10001','页面按钮名称2','2021-07-16 16:30:32',2,'Yangcl','2021-07-16 16:55:04',2,'Yangcl',1);
 
 /*Table structure for table `mc_user_info` */
 
@@ -764,13 +789,13 @@ CREATE TABLE `mc_user_info` (
   `update_user_name` varchar(20) DEFAULT '' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=20072026234174 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='API表格';
+) ENGINE=InnoDB AUTO_INCREMENT=20072026234178 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='API表格';
 
 /*Data for the table `mc_user_info` */
 
 insert  into `mc_user_info`(`id`,`cid`,`tenant_info_id`,`user_name`,`password`,`user_code`,`mc_organization_id`,`type`,`platform`,`flag`,`idcard`,`sex`,`birthday`,`mobile`,`email`,`qq`,`pic_url`,`page_css`,`remark`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
-(1,0,0,'admin','0988a08e0e7cdaf2b395133b0fbba289','',0,'leader','133C9CB27E18',NULL,'4677',1,NULL,'13511112221','admin-y@300.cn',NULL,'','default','Leader平台超级系统管理员','2018-07-28 23:30:08',1,'admin','2019-07-16 11:26:32',1,'admin',1),
-(2,0,0,'Yangcl','71fb5b225e96fc8ec99e8fe85e35b40a','',0,'leader','133C9CB27E18',NULL,'',1,NULL,'18514037761','yangchenglin@300.cn',NULL,'','default','杨成琳-Leader后台管理员','2018-09-25 17:50:21',1,'admin','2019-07-23 10:59:37',2,'Yangcl',1);
+(1,0,0,'admin','0988a08e0e7cdaf2b395133b0fbba289','',0,'leader','133C9CB27E18',1,'4677',1,NULL,'13511112221','admin-y@300.cn',NULL,'','default','Leader平台超级系统管理员','2018-07-28 23:30:08',1,'admin','2019-07-16 11:26:32',1,'admin',1),
+(2,0,0,'Yangcl','71fb5b225e96fc8ec99e8fe85e35b40a','',0,'leader','133C9CB27E18',1,'',1,NULL,'18514037761','yangchenglin@300.cn',NULL,'','default','杨成琳-Leader后台管理员','2018-09-25 17:50:21',1,'admin','2019-07-23 10:59:37',2,'Yangcl',1);
 
 /*Table structure for table `mc_user_info_organization` */
 
@@ -811,7 +836,7 @@ CREATE TABLE `mc_user_role` (
   `update_user_name` varchar(20) DEFAULT '' COMMENT '更新者姓名',
   `delete_flag` int DEFAULT '1' COMMENT '删除标记: 0删除|1未删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=514 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=519 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `mc_user_role` */
 
