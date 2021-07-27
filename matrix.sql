@@ -77,15 +77,15 @@ CREATE TABLE `ac_api_info` (
 /*Data for the table `ac_api_info` */
 
 insert  into `ac_api_info`(`id`,`name`,`target`,`dto_info`,`atype`,`module`,`processor`,`domain`,`parent_id`,`seqnum`,`discard`,`login`,`remark`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
-(80160101,'根据API的target返回DTO的Json文本','API-COMMON-FIND-DTO',NULL,'private','matrix-api','common.ApiFindDtoProcessor',0,8,6,1,1,'根据API缓存的target返回查询消息体','2018-10-09 11:07:55',2,'Yangcl','2018-11-16 11:31:33',2,'Yangcl',1),
-(80160102,'根据Api请求者的key，找到对应的value','API-COMMON-FIND-VALUE-BY-KEY','{}','private','matrix-api','common.ApiFindValueByKey',0,8,7,0,1,'根据请求者的key，找到对应的value','2018-10-09 11:10:39',2,'Yangcl','2020-01-10 18:02:00',2,'Yangcl',1),
-(80160155,'用户登录接口','MANAGER-API-100','{\"userName\":\"admin-mdl\",\"password\":\"123456\",\r\n\"platform\":\"134160222D87\"}','private','matrix-manager-api','privates.ManagerApi100Processor',0,9,3,1,0,'验证用户登录信息|客户端用户：nodejs/IOS平板等','2018-10-11 15:49:38',2,'Yangcl','2021-03-15 15:26:50',2,'Yangcl',1),
+(80160101,'根据API的target返回DTO的Json文本','API-COMMON-FIND-DTO','{}','private','matrix-api','common.ApiFindDtoProcessor',0,8,6,1,1,'根据API缓存的target返回查询消息体','2018-10-09 11:07:55',2,'Yangcl','2021-07-20 17:11:13',2,'Yangcl',1),
+(80160102,'根据Api请求者的key，找到对应的value','API-COMMON-FIND-VALUE-BY-KEY','{}','private','matrix-api','common.ApiFindValueByKey',0,8,7,0,1,'根据请求者的key，找到对应的value','2018-10-09 11:10:39',2,'Yangcl','2021-07-20 17:10:49',2,'Yangcl',1),
+(80160155,'用户登录接口','MANAGER-API-100','{\"userName\":\"admin\",\"password\":\"admin@root\",\r\n\"platform\":\"133C9CB27E18\"}','private','matrix-manager-api','privates.ManagerApi100Processor',0,9,3,1,0,'验证用户登录信息|客户端用户：nodejs/IOS平板等','2018-10-11 15:49:38',2,'Yangcl','2021-07-20 15:08:35',2,'Yangcl',1),
 (80160156,'用户退出系统接口','MANAGER-API-101','{}','private','matrix-manager-api','privates.ManagerApi101Processor',0,9,4,1,1,'退出系统登录|客户端用户：nodejs/IOS平板等','2018-10-11 15:51:16',2,'Yangcl','2019-03-27 19:27:43',2,'Yangcl',1),
 (80160157,'用户列表页数据','MANAGER-API-102','{\"startIndex\":1,\"pageSize\":10,\"cid\":-1}','private','matrix-manager-api','privates.ManagerApi102Processor',0,9,5,1,1,'用户列表页数据展示','2018-10-11 15:52:16',2,'Yangcl','2020-01-10 17:35:11',2,'Yangcl',1),
 (80160158,'添加用户界面-绘制所属公司和平台分配两个控件','MANAGER-API-103',NULL,'private','matrix-manager-api','privates.ManagerApi103Processor',0,9,6,1,1,'添加用户界面-绘制所属公司（下拉框列表）和平台分配（单选按钮）','2018-10-12 11:37:29',2,'Yangcl','2018-10-12 11:37:29',2,'Yangcl',1),
 (80160183,'添加用户','MANAGER-API-104',NULL,'private','matrix-manager-api','privates.ManagerApi104Processor',0,9,7,1,1,'添加用户|MANAGER-API-104','2018-10-12 19:40:09',2,'Yangcl','2018-10-12 19:53:39',2,'Yangcl',1),
 (80160184,'获取用户详情','MANAGER-API-105','{\"id\":20072026234148}','private','matrix-manager-api','privates.ManagerApi105Processor',0,9,8,1,1,'在进入编辑页面时 -> 获取用户详情 -> 展示用户信息','2018-10-12 19:53:32',2,'Yangcl','2019-08-27 14:59:01',2,'Yangcl',1),
-(80160185,'修改用户信息','MANAGER-API-106',NULL,'private','matrix-manager-api','privates.ManagerApi106Processor',0,9,9,1,1,'修改用户信息','2018-10-12 20:07:12',2,'Yangcl','2018-10-12 20:07:12',2,'Yangcl',1),
+(80160185,'修改用户信息','MANAGER-API-106','{\r\n	\"id\": 1,\r\n	\"userName\": \"Yangcl\",\r\n	\"idcard\": \"2\",\r\n	\"sex\": 1,\r\n	\"mobile\": \"2\",\r\n	\"email\": \"2\",\r\n	\"qq\": \"2\",\r\n	\"remark\": \"2\",\r\n	\"userNameOld\": \"2\",\r\n	\"password\": \"2\",\r\n	\"oldPassWord\": \"2\"\r\n}','private','matrix-manager-api','privates.ManagerApi106Processor',0,9,9,1,1,'修改用户信息','2018-10-12 20:07:12',2,'Yangcl','2021-07-20 17:06:21',2,'Yangcl',1),
 (80160186,'删除一个用户|不保留数据库中的记录','MANAGER-API-107',NULL,'private','matrix-manager-api','privates.ManagerApi107Processor',0,9,10,1,1,'删除一个用户|不保留数据库中的记录|物理删除','2018-10-12 20:08:00',2,'Yangcl','2018-10-12 20:08:00',2,'Yangcl',1),
 (80160187,'用户选择后台页面样式风格','MANAGER-API-108',NULL,'private','matrix-manager-api','privates.ManagerApi108Processor',0,9,11,1,1,'用户自己选择后台页面样式风格','2018-10-12 20:14:21',2,'Yangcl','2018-10-12 20:14:42',2,'Yangcl',1),
 (80160188,'获取功能树列表','MANAGER-API-109',NULL,'private','matrix-manager-api','privates.ManagerApi109Processor',0,9,12,1,1,'获取树列表|sys-user-role-function.js使用2次\r\ndto.platform 如果不为空则获取指定平台下的功能节点\r\ndto.type type=list or role|如果type=role则同时获得角色列表，同时dto.id = roleId','2018-10-13 14:49:08',2,'Yangcl','2018-10-13 14:49:08',2,'Yangcl',1),
@@ -117,7 +117,7 @@ insert  into `ac_api_info`(`id`,`name`,`target`,`dto_info`,`atype`,`module`,`pro
 (80160327,'用户关联数据权限','MANAGER-API-134',NULL,'private','matrix-manager-api','privates.ManagerApi134Processor',0,9,38,1,1,'用户关联数据权限','2018-11-28 17:28:35',2,'Yangcl','2018-11-28 17:28:35',2,'Yangcl',1),
 (80160329,'区域门店集合','MANAGER-API-141',NULL,'private','matrix-manager-api','privates.ManagerApi141Processor',0,9,39,1,1,'获取区域门店集合','2018-12-18 10:46:18',2,'Yangcl','2018-12-18 10:46:18',2,'Yangcl',1),
 (80160340,'获取登录用户的角色','MANAGER-API-142',NULL,'private','matrix-manager-api','privates.ManagerApi142Processor',0,9,40,1,1,'获取登录用户的角色','2018-12-19 19:14:11',2,'Yangcl','2018-12-19 19:14:11',2,'Yangcl',1),
-(80161090,'用户登录接口2','MANAGER-API-200','{id:1}','private','matrix-manager-api','privates.ManagerApi100Processor',1,32,1,0,0,'用户登录接口2','2021-07-16 18:37:40',2,'Yangcl','2021-07-16 18:48:47',2,'Yangcl',1);
+(80161090,'用户登录接口2','MANAGER-API-200','{id:1}','private','matrix-manager-api','privates.ManagerApi100Processor',1,32,1,0,0,'用户登录接口2','2021-07-16 18:37:40',2,'Yangcl','2021-07-20 15:16:54',2,'Yangcl',0);
 
 /*Table structure for table `ac_api_project` */
 
@@ -794,7 +794,7 @@ CREATE TABLE `mc_user_info` (
 /*Data for the table `mc_user_info` */
 
 insert  into `mc_user_info`(`id`,`cid`,`tenant_info_id`,`user_name`,`password`,`user_code`,`mc_organization_id`,`type`,`platform`,`flag`,`idcard`,`sex`,`birthday`,`mobile`,`email`,`qq`,`pic_url`,`page_css`,`remark`,`create_time`,`create_user_id`,`create_user_name`,`update_time`,`update_user_id`,`update_user_name`,`delete_flag`) values 
-(1,0,0,'admin','0988a08e0e7cdaf2b395133b0fbba289','',0,'leader','133C9CB27E18',1,'4677',1,NULL,'13511112221','admin-y@300.cn',NULL,'','default','Leader平台超级系统管理员','2018-07-28 23:30:08',1,'admin','2019-07-16 11:26:32',1,'admin',1),
+(1,0,0,'abc','0988a08e0e7cdaf2b395133b0fbba289','',0,'leader','133C9CB27E18',1,'2',1,NULL,'2','2','2','','default','2','2018-07-28 23:30:08',1,'admin','2021-07-20 17:10:09',1,'admin',1),
 (2,0,0,'Yangcl','71fb5b225e96fc8ec99e8fe85e35b40a','',0,'leader','133C9CB27E18',1,'',1,NULL,'18514037761','yangchenglin@300.cn',NULL,'','default','杨成琳-Leader后台管理员','2018-09-25 17:50:21',1,'admin','2019-07-23 10:59:37',2,'Yangcl',1);
 
 /*Table structure for table `mc_user_info_organization` */
