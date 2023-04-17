@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress  
+metadata:
+  name: ingress-basic-rule
+  namespace: k8s-test
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "k8s.power-matrix-ingress.com.cn"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: api-k8s-web-service
+            port:
+              number: 8080
+  - host: "docker.power-matrix-ingress.com.cn"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: api-docker-web-server
+            port:
+              number: 8080
