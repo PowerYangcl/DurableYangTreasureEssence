@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-http-server
+  name: nginx-static-pv-deploy
+  namespace: k8s-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-http-server
+  template:
+    metadata:
+      labels:
+        app: nginx-http-server
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: pv-static-logs
+          mountPath: /var/log/nginx
+      volumes:
+        - name: pv-static-logs
+          persistentVolumeClaim:
+            claimName: nginx-logs-pvc

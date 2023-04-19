@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-pv-proto
+  name: nginx-pv-proto-demo
+  namespace: k8s-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-pv-proto
+  template:
+    metadata:
+      labels:
+        app: nginx-pv-proto
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: pv-proto-html
+          mountPath: /usr/share/nginx/html
+      volumes:
+        - name: pv-proto-html
+          nfs:
+            server: 172.30.0.139
+            path: /nfs/data/nginx-pv-dir
