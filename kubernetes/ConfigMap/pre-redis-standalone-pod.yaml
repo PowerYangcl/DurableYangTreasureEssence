@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: redis-standalone-pre
+  name: pre-redis-standalone-deploy
+  namespace: k8s-test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-standalone-pre
+  template:
+    metadata:
+      labels:
+        app: redis-standalone-pre
+    spec:
+      containers:        
+      - name: redis5
+        image: poweryangcl/redis5.0:5.0.11-alpine
+        command:
+          - redis-server
+          - "/redis-master/my-redis.conf"  #指的是redis容器内部的位置
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: redis-data-01
+          mountPath: /data
+        - name: config-map-redis-pre
+          mountPath: /redis-master
+      volumes:
+        - name: redis-data-01
+          persistentVolumeClaim:    #或使用：emptyDir: {}
+            claimName: cm-redis-static-pvc        
+        - name: config-map-redis-pre
+          configMap:
+            name: redis-conf-name  #使用已经存在的config map
+            items:
+            - key: pre-leader-redis.conf
+              path: my-redis.conf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
