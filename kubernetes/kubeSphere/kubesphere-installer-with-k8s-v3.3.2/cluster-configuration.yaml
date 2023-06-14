@@ -8,7 +8,7 @@ metadata:
     version: v3.3.2
 spec:
   persistence:
-    storageClass: ""        # If there is no default StorageClass in your cluster, you need to specify an existing StorageClass here.
+    storageClass: "nfs-storage"        # If there is no default StorageClass in your cluster, you need to specify an existing StorageClass here.
   authentication:
     # adminPassword: ""     # Custom password of the admin user. If the parameter exists but the value is empty, a random password is generated. If the parameter does not exist, P@88w0rd is used.
     jwtSecret: ""           # Keep the jwtSecret consistent with the Host Cluster. Retrieve the jwtSecret by executing "kubectl -n kubesphere-system get cm kubesphere-config -o yaml | grep -v "apiVersion" | grep jwtSecret" on the Host Cluster.
@@ -100,7 +100,7 @@ spec:
       replicas: 2
       # resources: {}
   metrics_server:                    # (CPU: 56 m, Memory: 44.35 MiB) It enables HPA (Horizontal Pod Autoscaler).
-    enabled: false                   # Enable or disable metrics-server.
+    enabled: true                   # Enable or disable metrics-server.
   monitoring:
     storageClass: ""                 # If there is an independent StorageClass you need for Prometheus, you can specify it here. The default StorageClass is used by default.
     node_exporter:
