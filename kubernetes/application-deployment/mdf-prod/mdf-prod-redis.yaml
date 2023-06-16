@@ -1,0 +1,207 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mdf-prod-redis-pvc-mdf-prod-redis-0
+  namespace: mdf-prod
+  labels:
+    app: mdf-prod-redis
+  annotations:
+    pv.kubernetes.io/bind-completed: 'yes'
+    pv.kubernetes.io/bound-by-controller: 'yes'
+    volume.beta.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+    volume.kubernetes.io/selected-node: node1
+    volume.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: pvc-ab3b0ce4-b96b-41bf-a1e6-76af9aea8b74
+  storageClassName: local
+  volumeMode: Filesystem
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mdf-prod-redis-config
+  namespace: mdf-prod
+  annotations:
+    kubesphere.io/alias-name: mdf-prod
+    kubesphere.io/creator: dev-liu
+data:
+  redis.conf: |-
+    appendonly yes
+    port 6379
+    bind 0.0.0.0
+    requirepass "matrix"
+
+
+---
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mdf-prod-redis
+  namespace: mdf-prod
+  labels:
+    app: mdf-prod-redis
+  annotations:
+    kubesphere.io/alias-name: mdf-prod
+    kubesphere.io/creator: dev-liu
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: mdf-prod-redis
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mdf-prod-redis
+      annotations:
+        kubesphere.io/creator: dev-liu
+        kubesphere.io/imagepullsecrets: '{}'
+        logging.kubesphere.io/logsidecar-config: '{}'
+    spec:
+      volumes:
+        - name: volume-kg5e6l
+          configMap:
+            name: mdf-prod-redis-config
+            defaultMode: 420
+      containers:
+        - name: container-y77xcl
+          image: 'poweryangcl/redis5.0:5.0.11-alpine'
+          command:
+            - redis-server
+          args:
+            - /etc/redis/redis.conf
+          ports:
+            - name: tcp-6379
+              containerPort: 6379
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '2'
+              memory: 2000Mi
+          volumeMounts:
+            - name: volume-kg5e6l
+              readOnly: true
+              mountPath: /etc/redis/
+            - name: mdf-prod-redis-pvc
+              mountPath: /data
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      serviceAccount: default
+      securityContext: {}
+      schedulerName: default-scheduler
+  volumeClaimTemplates:
+    - kind: PersistentVolumeClaim
+      apiVersion: v1
+      metadata:
+        name: mdf-prod-redis-pvc
+        namespace: mdf-prod
+        creationTimestamp: null
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi
+        storageClassName: local
+        volumeMode: Filesystem
+      status:
+        phase: Pending
+  serviceName: mdf-prod-redis-75kp
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  revisionHistoryLimit: 10
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mdf-prod-redis-service-np
+  namespace: mdf-prod
+  labels:
+    app: mdf-prod-redis-service-np
+  annotations:
+    kubesphere.io/alias-name: mdf-prod
+    kubesphere.io/creator: dev-liu
+spec:
+  ports:
+    - name: http-6379
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
+      nodePort: 30649
+  selector:
+    app: mdf-prod-redis
+  clusterIP: 10.233.15.181
+  clusterIPs:
+    - 10.233.15.181
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mdf-prod-redis-service-inner
+  namespace: mdf-prod
+  labels:
+    app: mdf-prod-redis-service-inner
+  annotations:
+    kubesphere.io/alias-name: mdf-prod
+    kubesphere.io/creator: dev-liu
+spec:
+  ports:
+    - name: http-6379
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
+  selector:
+    app: mdf-prod-redis
+  clusterIP: None
+  clusterIPs:
+    - None
+  type: ClusterIP
+  sessionAffinity: None
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

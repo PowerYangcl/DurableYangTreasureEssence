@@ -1,0 +1,488 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mdf-prod-nacos-config
+  namespace: mdf-prod
+  annotations:
+    kubesphere.io/alias-name: mdf-prod
+    kubesphere.io/creator: dev-liu
+data:
+  application.properties: >
+    #
+ 
+
+    server.servlet.contextPath=/nacos
+ 
+
+    server.port=8848
+ 
+
+    spring.datasource.platform=mysql
+ 
+
+    db.num=1
+
+ 
+
+    db.url.0=jdbc:mysql://mdf-prod-mysql-service-inner.mdf-prod:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
+
+    db.user.0=root
+
+    db.password.0=XianYue1998@
+
+
+    ### Connection pool configuration: hikariCP
+
+    db.pool.config.connectionTimeout=30000
+
+    db.pool.config.validationTimeout=10000
+
+    db.pool.config.maximumPoolSize=20
+
+    db.pool.config.minimumIdle=2
+
+
+    #*************** Naming Module Related Configurations ***************#
+
+    ### Data dispatch task execution period in milliseconds: Will removed on
+    v2.1.X, replace with nacos.core.protocol.distro.data.sync.delayMs
+ 
+
+
+    ### Retry delay in milliseconds if sync task failed: Will removed on v2.1.X,
+    replace with nacos.core.protocol.distro.data.sync.retryDelayMs
+
+    # nacos.naming.distro.syncRetryDelay=5000
+
+
+    ### If enable data warmup. If set to false, the server would accept request
+    without local data preparation:
+
+    # nacos.naming.data.warmup=true
+
+
+    ### If enable the instance auto expiration, kind like of health check of
+    instance:
+
+    # nacos.naming.expireInstance=true
+
+
+    ### will be removed and replaced by `nacos.naming.clean` properties
+
+    nacos.naming.empty-service.auto-clean=true
+
+    nacos.naming.empty-service.clean.initial-delay-ms=50000
+
+    nacos.naming.empty-service.clean.period-time-ms=30000
+ 
+    milliseconds.
+ 
+
+
+
+    #*************** Metrics Related Configurations ***************#
+
+    ### Metrics for prometheus
+
+    #management.endpoints.web.exposure.include=*
+
+
+    ### Metrics for elastic search
+
+    management.metrics.export.elastic.enabled=false
+
+    #management.metrics.export.elastic.host=http://localhost:9200
+
+
+    ### Metrics for influx
+
+    management.metrics.export.influx.enabled=false
+
+    #management.metrics.export.influx.db=springboot
+
+    #management.metrics.export.influx.uri=http://localhost:8086
+
+    #management.metrics.export.influx.auto-create-db=true
+
+    #management.metrics.export.influx.consistency=one
+
+    #management.metrics.export.influx.compressed=true
+
+
+    #*************** Access Log Related Configurations ***************#
+
+    ### If turn on the access log:
+
+    server.tomcat.accesslog.enabled=true
+
+
+    ### The access log pattern:
+
+    server.tomcat.accesslog.pattern=%h %l %u %t "%r" %s %b %D %{User-Agent}i
+    %{Request-Source}i
+
+
+    ### The directory of access log:
+
+    server.tomcat.basedir=
+
+
+    #*************** Access Control Related Configurations ***************#
+
+    ### If enable spring security, this option is deprecated in 1.2.0:
+
+    #spring.security.enabled=false
+
+
+    ### The ignore urls of auth, is deprecated in 1.2.0:
+
+    nacos.security.ignore.urls=/,/error,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.ico,/console-ui/public/**,/v1/auth/**,/v1/console/health/**,/actuator/**,/v1/console/server/**
+
+
+    ### The auth system to use, currently only 'nacos' and 'ldap' is supported:
+
+    nacos.core.auth.system.type=nacos
+
+
+    ### If turn on auth system:
+
+    nacos.core.auth.enabled=false
+
+
+    ### Turn on/off caching of auth information. By turning on this switch, the
+    update of auth information would have a 15 seconds delay.
+
+    nacos.core.auth.caching.enabled=true
+
+
+    ### Since 1.4.1, Turn on/off white auth for user-agent: nacos-server, only
+    for upgrade from old version.
+
+    nacos.core.auth.enable.userAgentAuthWhite=false
+
+
+    ### Since 1.4.1, worked when nacos.core.auth.enabled=true and
+    nacos.core.auth.enable.userAgentAuthWhite=false.
+
+    ### The two properties is the white list for auth and used by identity the
+    request from other server.
+
+    nacos.core.auth.server.identity.key=serverIdentity
+
+    nacos.core.auth.server.identity.value=security
+
+
+    ### worked when nacos.core.auth.system.type=nacos
+
+    ### The token expiration in seconds:
+
+    nacos.core.auth.plugin.nacos.token.expire.seconds=18000
+
+    ### The default token:
+
+    nacos.core.auth.plugin.nacos.token.secret.key=SecretKey012345678901234567890123456789012345678901234567890123456789
+
+
+    ### worked when nacos.core.auth.system.type=ldap，{0} is Placeholder,replace
+    login username
+
+    #nacos.core.auth.ldap.url=ldap://localhost:389
+
+    #nacos.core.auth.ldap.basedc=dc=example,dc=org
+
+    #nacos.core.auth.ldap.userDn=cn=admin,${nacos.core.auth.ldap.basedc}
+
+    #nacos.core.auth.ldap.password=admin
+
+    #nacos.core.auth.ldap.userdn=cn={0},dc=example,dc=org
+
+
+
+    #*************** Istio Related Configurations ***************#
+
+    ### If turn on the MCP server:
+
+    nacos.istio.mcp.server.enabled=false
+
+
+    #*************** Core Related Configurations ***************#
+
+
+    ### set the WorkerID manually
+
+    # nacos.core.snowflake.worker-id=
+
+
+    ### Member-MetaData
+
+    # nacos.core.member.meta.site=
+
+    # nacos.core.member.meta.adweight=
+
+    # nacos.core.member.meta.weight=
+
+
+    ### MemberLookup
+
+    ### Addressing pattern category, If set, the priority is highest
+
+    # nacos.core.member.lookup.type=[file,address-server]
+
+    ## Set the cluster list with a configuration file or command-line argument
+
+    #
+    nacos.member.list=192.168.16.101:8847?raft_port=8807,192.168.16.101?raft_port=8808,192.168.16.101:8849?raft_port=8809
+
+    ## for AddressServerMemberLookup
+
+    # Maximum number of retries to query the address server upon initialization
+
+    # nacos.core.address-server.retry=5
+
+    ## Server domain name address of [address-server] mode
+
+    # address.server.domain=jmenv.tbsite.net
+
+    ## Server port of [address-server] mode
+
+    # address.server.port=8080
+
+    ## Request address of [address-server] mode
+
+    # address.server.url=/nacos/serverlist
+
+
+    #*************** JRaft Related Configurations ***************#
+
+
+    ### Sets the Raft cluster election timeout, default value is 5 second
+
+    # nacos.core.protocol.raft.data.election_timeout_ms=5000
+
+    ### Sets the amount of time the Raft snapshot will execute periodically,
+    default is 30 minute
+
+    # nacos.core.protocol.raft.data.snapshot_interval_secs=30
+
+    ### raft internal worker threads
+
+    # nacos.core.protocol.raft.data.core_thread_num=8
+
+    ### Number of threads required for raft business request processing
+
+    # nacos.core.protocol.raft.data.cli_service_thread_num=4
+
+    ### raft linear read strategy. Safe linear reads are used by default, that
+    is, the Leader tenure is confirmed by heartbeat
+
+    # nacos.core.protocol.raft.data.read_index_type=ReadOnlySafe
+
+    ### rpc request timeout, default 5 seconds
+
+    # nacos.core.protocol.raft.data.rpc_request_timeout_ms=5000
+
+
+    #*************** Distro Related Configurations ***************#
+
+
+    ### Distro data sync delay time, when sync task delayed, task will be merged
+    for same data key. Default 1 second.
+
+    # nacos.core.protocol.distro.data.sync.delayMs=1000
+
+
+    ### Distro data sync timeout for one sync data, default 3 seconds.
+
+    # nacos.core.protocol.distro.data.sync.timeoutMs=3000
+
+
+    ### Distro data sync retry delay time when sync data failed or timeout, same
+    behavior with delayMs, default 3 seconds.
+
+    # nacos.core.protocol.distro.data.sync.retryDelayMs=3000
+
+
+    ### Distro data verify interval time, verify synced data whether expired for
+    a interval. Default 5 seconds.
+
+    # nacos.core.protocol.distro.data.verify.intervalMs=5000
+
+
+    ### Distro data verify timeout for one verify, default 3 seconds.
+
+    # nacos.core.protocol.distro.data.verify.timeoutMs=3000
+
+
+    ### Distro data load retry delay when load snapshot data failed, default 30
+    seconds.
+
+    # nacos.core.protocol.distro.data.load.retryDelayMs=30000
+  cluster.conf: |-
+    mdf-prod-nacos-v1-0.mdf-prod-nacos.mdf-prod.svc.cluster.local:8848
+    mdf-prod-nacos-v1-1.mdf-prod-nacos.mdf-prod.svc.cluster.local:8848
+    mdf-prod-nacos-v1-2.mdf-prod-nacos.mdf-prod.svc.cluster.local:8848
+
+---
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mdf-prod-nacos-v1
+  namespace: mdf-prod
+  labels:
+    app: mdf-prod-nacos
+    version: v1
+  annotations:
+    kubesphere.io/creator: dev-liu
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: mdf-prod-nacos
+      version: v1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mdf-prod-nacos
+        version: v1
+      annotations:
+        kubesphere.io/creator: dev-liu
+        kubesphere.io/imagepullsecrets: '{}'
+        logging.kubesphere.io/logsidecar-config: '{}'
+    spec:
+      volumes:
+        - name: volume-q3tuj7
+          configMap:
+            name: mdf-prod-nacos-config
+            items:
+              - key: application.properties
+                path: application.properties
+            defaultMode: 420
+        - name: volume-lj6cts
+          configMap:
+            name: mdf-prod-nacos-config
+            items:
+              - key: cluster.conf
+                path: cluster.conf
+            defaultMode: 420
+      containers:
+        - name: container-vxze0g
+          image: 'nacos/nacos-server:v2.1.0'
+          ports:
+            - name: tcp-8848
+              containerPort: 8848
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: volume-q3tuj7
+              readOnly: true
+              mountPath: /home/nacos/conf/application.properties
+              subPath: application.properties
+            - name: volume-lj6cts
+              readOnly: true
+              mountPath: /home/nacos/conf/cluster.conf
+              subPath: cluster.conf
+          livenessProbe:
+            httpGet:
+              path: /nacos
+              port: 8848
+              scheme: HTTP
+            initialDelaySeconds: 20
+            timeoutSeconds: 3
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      serviceAccount: default
+      securityContext: {}
+      schedulerName: default-scheduler
+  serviceName: mdf-prod-nacos
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  revisionHistoryLimit: 10
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mdf-prod-nacos-service-np
+  namespace: mdf-prod
+  labels:
+    app: mdf-prod-nacos-service-np
+  annotations:
+    kubesphere.io/alias-name: mdf-prod
+    kubesphere.io/creator: dev-liu
+spec:
+  ports:
+    - name: http-8848
+      protocol: TCP
+      port: 8848
+      targetPort: 8848
+      nodePort: 30970
+  selector:
+    app: mdf-prod-nacos
+    version: v1
+  clusterIP: 10.233.35.237
+  clusterIPs:
+    - 10.233.35.237
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mdf-prod-nacos
+  namespace: mdf-prod
+  labels:
+    app: mdf-prod-nacos
+    version: v1
+  annotations:
+    kubesphere.io/alias-name: mdf-prod
+    kubesphere.io/creator: dev-liu
+    kubesphere.io/serviceType: statefulservice
+spec:
+  ports:
+    - name: tcp-8848
+      protocol: TCP
+      port: 8848
+      targetPort: 8848
+  selector:
+    app: mdf-prod-nacos
+  clusterIP: None
+  clusterIPs:
+    - None
+  type: ClusterIP
+  sessionAffinity: None
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
+
+
+
+
+
+
+
+
+
+
+
+
+

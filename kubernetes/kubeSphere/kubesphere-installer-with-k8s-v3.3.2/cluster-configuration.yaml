@@ -8,15 +8,16 @@ metadata:
     version: v3.3.2
 spec:
   persistence:
-    storageClass: "nfs-storage"        # If there is no default StorageClass in your cluster, you need to specify an existing StorageClass here.
+    storageClass: ""        # If there is no default StorageClass in your cluster, you need to specify an existing StorageClass here.
   authentication:
-    # adminPassword: ""     # Custom password of the admin user. If the parameter exists but the value is empty, a random password is generated. If the parameter does not exist, P@88w0rd is used.
+    # adminPassword: ""     # admin账户默认密码：P@88w0rd。Custom password of the admin user. If the parameter exists but the value is empty, a random password is generated. If the parameter does not exist, P@88w0rd is used.
     jwtSecret: ""           # Keep the jwtSecret consistent with the Host Cluster. Retrieve the jwtSecret by executing "kubectl -n kubesphere-system get cm kubesphere-config -o yaml | grep -v "apiVersion" | grep jwtSecret" on the Host Cluster.
   local_registry: ""        # Add your private registry address if it is needed.
   # dev_tag: ""               # Add your kubesphere image tag you want to install, by default it's same as ks-installer release version.
   etcd:
     monitoring: true       # Enable or disable etcd monitoring dashboard installation. You have to create a Secret for etcd before you enable it.
-    endpointIps: localhost  # etcd cluster EndpointIps. It can be a bunch of IPs here.
+    #endpointIps: localhost  # etcd cluster EndpointIps. It can be a bunch of IPs here.
+    endpointIps: 172.30.0.149  # TODO 开启etcd监控功能，这里需要指定master节点内网IP地址。此处必须改，否则monitoring报错。
     port: 2379              # etcd port.
     tlsEnable: true
   common:
@@ -34,7 +35,7 @@ spec:
       enabled: true
       enableHA: false
       volumeSize: 2Gi # Redis PVC size.
-    openldap:
+    openldap:         # 轻量级目录协议功能
       enabled: true
       volumeSize: 2Gi   # openldap PVC size.
     minio:
@@ -60,7 +61,7 @@ spec:
       #   resources: {}
       logMaxAge: 7             # Log retention time in built-in Elasticsearch. It is 7 days by default.
       elkPrefix: logstash      # The string making up index names. The index name will be formatted as ks-<elk_prefix>-log.
-      basicAuth:
+      basicAuth:          # 开启monitoring功能后会链接es，这里如果有用户名和密码则需要指定，默认不指定即可
         enabled: false
         username: ""
         password: ""
@@ -129,7 +130,7 @@ spec:
       nvidia_dcgm_exporter:        # Ensure that gpu resources on your hosts can be used normally, otherwise this plug-in will not work properly.
         enabled: true             # Check whether the labels on the GPU hosts contain "nvidia.com/gpu.present=true" to ensure that the DCGM pod is scheduled to these nodes.
         # resources: {}
-  multicluster:
+  multicluster:             # 开启多集群功能
     clusterRole: none  # host | member | none  # You can install a solo cluster, or specify it as the Host or Member Cluster.
   network:
     networkpolicy: # Network policies allow network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).
@@ -139,7 +140,7 @@ spec:
       type: calico # Specify "calico" for this field if Calico is used as your CNI plugin. "none" means that Pod IP Pools are disabled.
     topology: # Use Service Topology to view Service-to-Service communication based on Weave Scope.
       type: none # Specify "weave-scope" for this field to enable Service Topology. "none" means that Service Topology is disabled.
-  openpitrix: # An App Store that is accessible to all platform tenants. You can use it to manage apps across their entire lifecycle.
+  openpitrix: # KubeSphere的应用商店功能。An App Store that is accessible to all platform tenants. You can use it to manage apps across their entire lifecycle.
     store:
       enabled: true # Enable or disable the KubeSphere App Store.
   servicemesh:         # (0.3 Core, 300 MiB) Provide fine-grained traffic management, observability and tracing, and visualized traffic topology.
