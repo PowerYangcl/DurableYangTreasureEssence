@@ -86,9 +86,9 @@ spec:
       nodePort: 31581
   selector:
     app: jsp-demo
-  clusterIP: 10.233.8.137
-  clusterIPs:
-    - 10.233.8.137
+  #clusterIP: 10.233.8.137
+  #clusterIPs:
+  #  - 10.233.8.137
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster

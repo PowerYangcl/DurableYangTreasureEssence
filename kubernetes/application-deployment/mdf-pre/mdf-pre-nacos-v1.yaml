@@ -339,7 +339,7 @@ spec:
             defaultMode: 420
       containers:
         - name: container-2qi0er
-          image: 'nacos/nacos-server:v2.1.0'
+          image: 'registry.cn-beijing.aliyuncs.com/power-matrix/nacos-server'
           ports:
             - name: tcp-8848
               containerPort: 8848
@@ -426,9 +426,9 @@ spec:
   selector:
     app: mdf-pre-nacos
     version: v1
-  clusterIP: 10.233.61.53
-  clusterIPs:
-    - 10.233.61.53
+  #clusterIP: 10.233.61.53
+  #clusterIPs:
+  #  - 10.233.61.53
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster

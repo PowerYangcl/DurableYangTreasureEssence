@@ -1,3 +1,5 @@
+# 此文件为原始导出，在其基础上被#号注释吊的内容都是不需要的
+# 如果不删除这些内容会导致 kubectl apply -f ***.yaml 报错。
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -8,10 +10,10 @@ metadata:
     kubesphere.io/alias-name: mdf-pre
     kubesphere.io/creator: dev-liu
     kubesphere.io/description: mdf pre 环境 mysql外部存储挂载
-    pv.kubernetes.io/bind-completed: 'yes'
-    pv.kubernetes.io/bound-by-controller: 'yes'
+    #pv.kubernetes.io/bind-completed: 'yes'
+    #pv.kubernetes.io/bound-by-controller: 'yes'
     volume.beta.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
-    volume.kubernetes.io/selected-node: node2
+    #volume.kubernetes.io/selected-node: node2
     volume.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
   finalizers:
     - kubernetes.io/pvc-protection
@@ -21,8 +23,9 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  volumeName: pvc-6a4449ba-e84c-4531-ae8e-1bda428ef4e8
-  storageClassName: local
+  #volumeName: pvc-6a4449ba-e84c-4531-ae8e-1bda428ef4e8
+  #storageClassName: local 默认存储类的不同会导致无法使用
+  storageClassName: nfs-storage
   volumeMode: Filesystem
 
 ---
@@ -49,7 +52,6 @@ data:
     collation-server=utf8mb4_unicode_ci
     skip-character-set-client-handshake
     skip-name-resolve
-    lower_case_table_names=1
 
 
 ---
@@ -93,7 +95,7 @@ spec:
             defaultMode: 420
       containers:
         - name: container-saqvn1
-          image: 'poweryangcl/mysql8.0:v2.0.0'
+          image: 'registry.cn-beijing.aliyuncs.com/power-matrix/mysql8.0:mdf-pre-v1.0'
           ports:
             - name: tcp-3306
               containerPort: 3306
@@ -181,9 +183,9 @@ spec:
       nodePort: 31419
   selector:
     app: mdf-pre-mysql
-  clusterIP: 10.233.27.70
-  clusterIPs:
-    - 10.233.27.70
+  #clusterIP: 10.233.27.70  这些内容都不需要，重新执行后会自动生成。
+  #clusterIPs:
+  #  - 10.233.27.70
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster

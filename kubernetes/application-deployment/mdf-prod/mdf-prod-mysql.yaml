@@ -1,3 +1,5 @@
+# 此文件为原始导出，在其基础上被#号注释吊的内容都是不需要的
+# 如果不删除这些内容会导致 kubectl apply -f ***.yaml 报错。
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -23,7 +25,6 @@ data:
     collation-server=utf8mb4_unicode_ci
     skip-character-set-client-handshake
     skip-name-resolve
-    lower_case_table_names=1
 
 
 ---
@@ -36,10 +37,10 @@ metadata:
     kubesphere.io/alias-name: mdf-prod
     kubesphere.io/creator: dev-liu
     kubesphere.io/description: mdf prod 环境 mysql外部存储挂载
-    pv.kubernetes.io/bind-completed: 'yes'
-    pv.kubernetes.io/bound-by-controller: 'yes'
+    #pv.kubernetes.io/bind-completed: 'yes'
+    #pv.kubernetes.io/bound-by-controller: 'yes'
     volume.beta.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
-    volume.kubernetes.io/selected-node: node2
+    #volume.kubernetes.io/selected-node: node2
     volume.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
   finalizers:
     - kubernetes.io/pvc-protection
@@ -49,8 +50,9 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  volumeName: pvc-84db8787-f5a1-442e-9919-9e7f33f39d61
-  storageClassName: local
+  #volumeName: pvc-84db8787-f5a1-442e-9919-9e7f33f39d61
+  #storageClassName: local 默认存储类的不同会导致无法使用
+  storageClassName: nfs-storage
   volumeMode: Filesystem
 
 
@@ -187,9 +189,9 @@ spec:
       nodePort: 31277
   selector:
     app: mdf-prod-mysql
-  clusterIP: 10.233.50.95
-  clusterIPs:
-    - 10.233.50.95
+  #clusterIP: 10.233.50.95  这些内容都不需要，重新执行后会自动生成。
+  #clusterIPs:
+  #  - 10.233.50.95
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster

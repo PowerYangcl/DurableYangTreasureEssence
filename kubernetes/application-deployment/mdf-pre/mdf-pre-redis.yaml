@@ -1,3 +1,5 @@
+# 此文件为原始导出，在其基础上被#号注释吊的内容都是不需要的
+# 如果不删除这些内容会导致 kubectl apply -f ***.yaml 报错。
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -7,10 +9,13 @@ metadata:
   labels:
     app: mdf-pre-redis
   annotations:
-    pv.kubernetes.io/bind-completed: 'yes'
-    pv.kubernetes.io/bound-by-controller: 'yes'
+    kubesphere.io/alias-name: mdf-pre
+    kubesphere.io/creator: dev-liu
+    kubesphere.io/description: mdf pre 环境 redis 外部存储挂载
+    #pv.kubernetes.io/bind-completed: 'yes'
+    #pv.kubernetes.io/bound-by-controller: 'yes'
     volume.beta.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
-    volume.kubernetes.io/selected-node: node2
+    #volume.kubernetes.io/selected-node: node2
     volume.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
   finalizers:
     - kubernetes.io/pvc-protection
@@ -20,8 +25,8 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  volumeName: pvc-18cbab16-97da-483c-8492-57d07f7c6919
-  storageClassName: local
+  #volumeName: pvc-18cbab16-97da-483c-8492-57d07f7c6919
+  storageClassName: nfs-storage
   volumeMode: Filesystem
 ---
 kind: ConfigMap
@@ -72,7 +77,7 @@ spec:
             defaultMode: 420
       containers:
         - name: container-wn4744
-          image: 'poweryangcl/redis5.0:5.0.11-alpine'
+          image: 'registry.cn-beijing.aliyuncs.com/power-matrix/redis5.0:5.0.11-alpine'
           command:
             - redis-server
           args:
@@ -146,9 +151,9 @@ spec:
       nodePort: 30215
   selector:
     app: mdf-pre-redis
-  clusterIP: 10.233.13.40
-  clusterIPs:
-    - 10.233.13.40
+  #clusterIP: 10.233.13.40
+  #clusterIPs:
+  #  - 10.233.13.40
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster

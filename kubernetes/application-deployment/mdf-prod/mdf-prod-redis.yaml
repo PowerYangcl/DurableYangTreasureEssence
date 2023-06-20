@@ -1,3 +1,5 @@
+# 此文件为原始导出，在其基础上被#号注释吊的内容都是不需要的
+# 如果不删除这些内容会导致 kubectl apply -f ***.yaml 报错。
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -7,10 +9,10 @@ metadata:
   labels:
     app: mdf-prod-redis
   annotations:
-    pv.kubernetes.io/bind-completed: 'yes'
-    pv.kubernetes.io/bound-by-controller: 'yes'
+    #pv.kubernetes.io/bind-completed: 'yes'
+    #pv.kubernetes.io/bound-by-controller: 'yes'
     volume.beta.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
-    volume.kubernetes.io/selected-node: node1
+    #volume.kubernetes.io/selected-node: node1
     volume.kubernetes.io/storage-provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
   finalizers:
     - kubernetes.io/pvc-protection
@@ -20,8 +22,8 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  volumeName: pvc-ab3b0ce4-b96b-41bf-a1e6-76af9aea8b74
-  storageClassName: local
+  #volumeName: pvc-ab3b0ce4-b96b-41bf-a1e6-76af9aea8b74
+  storageClassName: nfs-storage
   volumeMode: Filesystem
 
 ---
@@ -74,7 +76,7 @@ spec:
             defaultMode: 420
       containers:
         - name: container-y77xcl
-          image: 'poweryangcl/redis5.0:5.0.11-alpine'
+          image: 'registry.cn-beijing.aliyuncs.com/power-matrix/redis5.0:5.0.11-alpine'
           command:
             - redis-server
           args:
@@ -148,9 +150,9 @@ spec:
       nodePort: 30649
   selector:
     app: mdf-prod-redis
-  clusterIP: 10.233.15.181
-  clusterIPs:
-    - 10.233.15.181
+  #clusterIP: 10.233.15.181
+  #clusterIPs:
+  #  - 10.233.15.181
   type: NodePort
   sessionAffinity: None
   externalTrafficPolicy: Cluster
